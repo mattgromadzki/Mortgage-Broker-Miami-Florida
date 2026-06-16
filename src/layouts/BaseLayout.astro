@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  head?: string;     // optional raw head HTML (e.g. JSON-LD structured data)
+  noindex?: boolean; // set true to keep a page out of search engines
+}
+
+const { title, description = '', head = '', noindex = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="stylesheet" href="styles.css" />
+    {head && <Fragment set:html={head} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <slot />
+    <Footer />
+    <div class="mobile-cta">
+      <a href="tel:+13059884806">Call</a>
+      <a href="sms:+17863708570">Text</a>
+      <a href="start.html">Start</a>
+      <a href="mortgage-calculator-florida.html">Calc</a>
+    </div>
+    <script src="app.js" defer is:inline></script>
+  </body>
+</html>
