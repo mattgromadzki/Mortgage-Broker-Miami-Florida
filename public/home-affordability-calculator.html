@@ -1,0 +1,98 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home Affordability Calculator | Mortgage Broker Miami</title>
+<meta name="description" content="Find out how much home you can afford based on your income, monthly debts, down payment, and debt-to-income limits.">
+<link rel="stylesheet" href="calc.css"></head><body>
+<div id="site-hdr"></div>
+<div class="wrap calc-hero">
+  <p class="eyebrow">Affordability</p>
+  <h1>How much home can you <em>afford</em>?</h1>
+  <p>Lenders qualify you on debt-to-income, not just income. Enter your numbers to see the price range your income and debts support — then we can verify it for real.</p>
+</div>
+<div class="wrap calc">
+  <section class="panel">
+    <div class="panel-h"><h2>Your finances</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Gross annual income</label><div class="moneyin"><span>$</span><input id="inc" inputmode="numeric" value="120,000"></div></div>
+      <div class="fld"><label>Monthly debt payments</label><div class="moneyin"><span>$</span><input id="debts" inputmode="numeric" value="600"></div><p class="hint">Car loans, student loans, credit-card minimums, etc. — not rent.</p></div>
+      <div class="fld"><label>Down payment (cash)</label><div class="moneyin"><span>$</span><input id="down" inputmode="numeric" value="60,000"></div></div>
+      <div class="two">
+        <div class="fld"><label>Interest rate</label><div class="unitin"><input id="rate" inputmode="decimal" value="6.50"><span>%</span></div></div>
+        <div class="fld"><label>Loan term</label><select class="in" id="term"><option value="360" selected>30 years</option><option value="240">20 years</option><option value="180">15 years</option></select></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>Property tax rate</label><div class="unitin"><input id="taxp" inputmode="decimal" value="1.10"><span>%/yr</span></div></div>
+        <div class="fld"><label>Insurance / yr</label><div class="moneyin"><span>$</span><input id="ins" inputmode="numeric" value="3,000"></div></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>HOA / mo</label><div class="moneyin"><span>$</span><input id="hoa" inputmode="numeric" value="0"></div></div>
+        <div class="fld"><label>Max DTI (back-end)</label><select class="in" id="dti"><option value="36">Conservative · 36%</option><option value="43" selected>Standard · 43%</option><option value="50">Stretch · 50%</option></select></div>
+      </div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-h"><h2>What you can afford</h2></div>
+    <div class="panel-b">
+      <div class="result-top"><div><div class="lbl">Estimated max home price</div><div class="big" id="maxPrice">—</div><div class="lbl" id="limit">—</div></div>
+        <div class="r"><div class="lbl">Max loan amount</div><b id="maxLoan">—</b><div class="lbl">Est. monthly payment</div><b id="estPmt">—</b></div></div>
+      <div class="brk">
+        <h4>At that price, your payment looks like</h4>
+        <div class="line"><span>Principal &amp; interest</span><span class="v" id="bPi">—</span></div>
+        <div class="line"><span>Property tax</span><span class="v" id="bTax">—</span></div>
+        <div class="line"><span>Insurance</span><span class="v" id="bIns">—</span></div>
+        <div class="line" id="rHoa"><span>HOA</span><span class="v" id="bHoa">—</span></div>
+        <div class="line" id="rPmi"><span>PMI</span><span class="v" id="bPmi">—</span></div>
+        <div class="line total"><span>Total monthly (PITI)</span><span class="v" id="bTotal">—</span></div>
+      </div>
+      <div class="savings">
+        <div class="scard"><small>Max housing payment</small><b id="maxHousing">—</b></div>
+        <div class="scard"><small>Down payment</small><b id="dpOut">—</b></div>
+      </div>
+      <div id="disc"></div><div id="cta"></div>
+    </div>
+  </section>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>How affordability really works</h2>
+  <p>Lenders look at two ratios: your housing payment versus income (front-end, often around 28%) and your total monthly debt versus income (back-end, commonly up to 43%, sometimes higher). The lower of the two limits sets your ceiling. Paying down a car loan or credit card can raise your buying power more than a small rate change — and a real pre-approval confirms the number before you shop.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+['inc','debts','down','ins','hoa'].forEach(function(id){bindMoney(id,calc);});
+bindNum('rate',calc);bindNum('taxp',calc);
+document.getElementById('term').addEventListener('change',calc);document.getElementById('dti').addEventListener('change',calc);
+function housing(price,down,rate,n,taxp,insYr,hoa){
+  var loan=Math.max(price-down,0),ltv=price?loan/price*100:0;
+  var pi=loan>0?monthlyPI(loan,rate,n):0,tax=price*taxp/100/12,ins=insYr/12,pmi=0;
+  if(ltv>80){var f=ltv>95?0.009:ltv>90?0.0067:ltv>85?0.0049:0.003;pmi=loan*f/12;}
+  return {pi:pi,tax:tax,ins:ins,hoa:hoa,pmi:pmi,total:pi+tax+ins+hoa+pmi};
+}
+function calc(){
+  var inc=num(document.getElementById('inc'))/12,debts=num(document.getElementById('debts')),down=num(document.getElementById('down'));
+  var rate=num(document.getElementById('rate')),n=Number(document.getElementById('term').value),taxp=num(document.getElementById('taxp'));
+  var insYr=num(document.getElementById('ins')),hoa=num(document.getElementById('hoa')),back=Number(document.getElementById('dti').value)/100,front=0.28;
+  var maxFront=inc*front,maxBack=inc*back-debts,target=Math.min(maxFront,maxBack);
+  var limiting=maxFront<=maxBack?'Limited by housing ratio (~28%)':'Limited by total debt ratio ('+(back*100)+'%)';
+  if(target<=0){target=0;}
+  // bisection on price
+  var lo=down,hi=20000000,price=down;
+  for(var i=0;i<60;i++){var mid=(lo+hi)/2;var h=housing(mid,down,rate,n,taxp,insYr,hoa).total;if(h>target)hi=mid;else lo=mid;}
+  price=lo; if(target<=0)price=down;
+  var h=housing(price,down,rate,n,taxp,insYr,hoa),loan=Math.max(price-down,0);
+  document.getElementById('maxPrice').textContent=money(price);
+  document.getElementById('limit').textContent=limiting;
+  document.getElementById('maxLoan').textContent=money(loan);
+  document.getElementById('estPmt').textContent=money(h.total);
+  document.getElementById('bPi').textContent=money(h.pi);document.getElementById('bTax').textContent=money(h.tax);
+  document.getElementById('bIns').textContent=money(h.ins);document.getElementById('bHoa').textContent=money(h.hoa);document.getElementById('bPmi').textContent=money(h.pmi);
+  document.getElementById('bTotal').textContent=money(h.total);
+  document.getElementById('rHoa').style.display=hoa>0?'':'none';document.getElementById('rPmi').style.display=h.pmi>0?'':'none';
+  document.getElementById('maxHousing').textContent=money(target);document.getElementById('dpOut').textContent=money(down);
+}
+document.getElementById('disc').innerHTML=disclaimer('Affordability uses simplified DTI ratios; real qualification considers credit, reserves, and program rules.');
+document.getElementById('cta').innerHTML=ctaRow();
+buildChrome('home-affordability-calculator');calc();
+</script>
+</body></html>

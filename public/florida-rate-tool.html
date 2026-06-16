@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Florida Mortgage Rate Tool | Mortgage Broker Miami — Matthew Gromadzki</title>
+<meta name="description" content="Compare a Florida mortgage scenario three ways — lower rate with points, balanced, and lender credit. See rate, APR, monthly payment, and cash to close. Planning estimate only, not a rate quote.">
+<meta name="theme-color" content="#0B2C52">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --navy:#0B2C52;--navy-700:#103A6B;--blue:#1657A8;--blue-600:#1D6FD0;--blue-100:#E9F1FB;--blue-50:#F4F8FD;
+  --gold:#EFA31B;--gold-700:#C9850C;--gold-soft:#FCEBC8;--ink:#0F2440;--muted:#5C6B82;--line:#E1E9F3;
+  --paper:#FBFCFE;--white:#fff;--green:#0E8257;--shadow:0 18px 44px rgba(11,44,82,.12);--shadow-sm:0 6px 18px rgba(11,44,82,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em;color:var(--navy);font-weight:700;line-height:1.14}
+.wrap{width:min(1180px,calc(100% - 36px));margin-inline:auto}
+.eyebrow{font-family:Sora;font-weight:700;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:20px;height:3px;background:var(--gold);border-radius:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Sora;font-weight:600;font-size:.92rem;padding:12px 22px;border-radius:10px;border:1.5px solid transparent;cursor:pointer;transition:.16s}
+.btn-gold{background:var(--gold);color:#3a2900}.btn-gold:hover{background:var(--gold-700);color:#fff}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--navy-700)}
+.btn-line{border-color:var(--blue);color:var(--blue)}.btn-line:hover{background:var(--blue-50)}
+:focus-visible{outline:none;box-shadow:0 0 0 3px var(--gold-soft),0 0 0 5px var(--gold)}
+
+.topbar{background:var(--navy);color:#dce8f6;font-size:.8rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:38px;gap:12px}
+.topbar .stars{color:var(--gold)} .topbar a{color:#fff;font-weight:600}
+@media(max-width:680px){.topbar .upd{display:none}}
+header{position:sticky;top:0;z-index:40;background:rgba(251,252,254,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:14px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(150deg,var(--blue),var(--blue-600));display:grid;place-items:center;flex:none}
+.logo-mark svg{width:21px;height:21px}.brand b{font-family:Sora;font-size:1rem;color:var(--navy)}.brand small{display:block;color:var(--muted);font-size:.7rem}
+.hd-cta{display:flex;gap:10px;align-items:center}.hd-cta .ph{font-family:Sora;font-weight:700;color:var(--blue)}
+@media(max-width:620px){.hd-cta .ph{display:none}}
+
+.tool-hero{padding:38px 0 8px}
+.tool-hero h1{font-size:clamp(2rem,4vw,2.9rem)}
+.tool-hero h1 em{color:var(--blue);font-style:italic}
+.tool-hero p{color:var(--muted);max-width:62ch;margin:14px 0 0;font-size:1.05rem}
+
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px;padding:30px 0 10px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-sm)}
+.panel-h{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.panel-h h2{font-size:1.15rem}.panel-h .live{font-size:.7rem;font-family:Sora;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:6px}
+.panel-h .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(14,130,87,.18)}
+.panel-b{padding:20px 22px}
+
+/* form */
+.fld{margin-bottom:18px}
+.fld label{display:block;font-family:Sora;font-weight:600;font-size:.82rem;color:var(--ink);margin-bottom:7px}
+.fld .hint{font-size:.74rem;color:var(--muted);margin-top:6px}
+.seg{display:grid;grid-auto-flow:column;gap:6px;background:var(--blue-50);border:1px solid var(--line);border-radius:11px;padding:4px}
+.seg button{font-family:Sora;font-weight:600;font-size:.84rem;border:0;background:none;padding:9px 6px;border-radius:8px;cursor:pointer;color:var(--muted);transition:.15s}
+.seg button[aria-pressed=true]{background:#fff;color:var(--navy);box-shadow:var(--shadow-sm)}
+.moneyin{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:11px;padding:10px 14px}
+.moneyin span{color:var(--muted);font-weight:600;margin-right:4px}
+.moneyin input{border:0;outline:0;font-size:1.05rem;font-weight:600;width:100%;font-family:inherit;color:var(--ink);background:transparent}
+select.in{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:11px 14px;font-family:inherit;font-size:.95rem;font-weight:600;color:var(--ink);background:#fff}
+input[type=range]{width:100%;accent-color:var(--blue);margin-top:4px}
+.dp-row{display:flex;justify-content:space-between;font-family:Sora;font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.computed{display:flex;justify-content:space-between;background:var(--navy);color:#fff;border-radius:12px;padding:14px 18px;margin-top:4px}
+.computed div small{display:block;font-size:.7rem;color:#9fc0e8;font-family:Sora;letter-spacing:.04em;text-transform:uppercase}
+.computed div b{font-family:Sora;font-weight:800;font-size:1.3rem}
+
+/* lanes */
+.lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lane{border:1.5px solid var(--line);border-radius:15px;padding:16px;cursor:pointer;transition:.15s;background:#fff;position:relative}
+.lane:hover{border-color:var(--blue-100)}
+.lane[aria-selected=true]{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-100)}
+.lane .tag{font-family:Sora;font-weight:700;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--blue)}
+.lane .sub{font-size:.72rem;color:var(--muted);margin-bottom:10px}
+.lane .rate{font-family:Sora;font-weight:800;font-size:1.7rem;color:var(--navy);line-height:1}
+.lane .apr{font-size:.76rem;color:var(--muted);margin-top:2px}
+.lane .pi{font-family:Sora;font-weight:700;color:var(--ink);margin-top:10px;font-size:.98rem}
+.lane .pi small{font-weight:500;color:var(--muted);font-size:.74rem}
+.lane .pts{font-size:.76rem;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-weight:600}
+.lane .pts.cost{color:var(--gold-700)} .lane .pts.credit{color:var(--green)}
+.lane .pick{position:absolute;top:12px;right:12px;font-size:.66rem;font-family:Sora;font-weight:700;color:#fff;background:var(--blue);border-radius:20px;padding:2px 8px;opacity:0}
+.lane[aria-selected=true] .pick{opacity:1}
+
+.detail{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.detail-top{background:linear-gradient(140deg,var(--navy),var(--blue));color:#fff;padding:20px 22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.detail-top .big{font-family:Sora;font-weight:800;font-size:2.1rem;line-height:1}
+.detail-top .lbl{font-size:.74rem;color:#bcd3ef}
+.detail-top .r{ text-align:right}
+.detail-top .r b{font-family:Sora;font-size:1.2rem;display:block}
+.brk{padding:6px 22px 14px}
+.brk h4{font-family:Sora;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+.line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.line:last-child{border-bottom:0}
+.line .v{font-family:Sora;font-weight:600;color:var(--navy)}
+.line.total{border-top:2px solid var(--navy);border-bottom:0;margin-top:4px;padding-top:10px;font-family:Sora;font-weight:700}
+.line.total .v{font-size:1.05rem}
+.line.sub{color:var(--muted);font-size:.84rem;padding:4px 0 4px 14px;border-bottom:0}
+.credit-line .v{color:var(--green)}
+details.fold{border-bottom:1px solid var(--line)}
+details.fold summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;padding:9px 0;font-size:.92rem}
+details.fold summary::-webkit-details-marker{display:none}
+details.fold summary .v{font-family:Sora;font-weight:600;color:var(--navy)}
+details.fold summary::after{content:"▸";color:var(--blue);margin-left:8px;transition:.15s}
+details.fold[open] summary::after{transform:rotate(90deg)}
+
+.disc{font-size:.74rem;color:var(--muted);background:var(--blue-50);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:16px;line-height:1.6}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.scenario-note{font-size:.78rem;color:var(--muted);margin-top:14px;font-style:italic}
+
+/* explainer */
+.section{padding:54px 0}
+.section.tint{background:var(--blue-50)}
+.x3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.xcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+.xcard .n{font-family:Sora;font-weight:800;color:var(--blue-100);font-size:2rem;line-height:1}
+.xcard h3{font-size:1.1rem;margin:6px 0 8px}.xcard p{color:var(--muted);font-size:.92rem;margin:0}
+.shead{max-width:640px;margin-bottom:30px}.shead h2{font-size:clamp(1.7rem,3vw,2.3rem);margin:12px 0 0}
+
+footer{background:var(--navy);color:#bcd0ea;padding:40px 0 28px;margin-top:30px}
+footer .fl{font-size:.78rem;line-height:1.7;color:#9fb2cd;max-width:90ch}
+footer .fbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:18px;font-size:.78rem}
+.eho{display:inline-flex;gap:7px;align-items:center}
+
+@media(max-width:920px){.tool{grid-template-columns:1fr}}
+@media(max-width:560px){.lanes{grid-template-columns:1fr}.two{grid-template-columns:1fr}.x3{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span><span class="stars">★★★★★</span> Florida wholesale-style pricing <span class="upd">· Base rate updated <span id="updDate">today</span></span></span>
+  <a href="tel:+13059884806">📞 (305) 988-4806</a>
+</div></div>
+
+<header><div class="wrap hd">
+  <a class="brand" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5M5 10.5V20h14v-9.5M10 20v-5h4v5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Mortgage Broker Miami</b><small>Matthew Gromadzki · NMLS #2560919</small></span></a>
+  <div class="hd-cta"><a class="ph" href="mortgage-calculators.html">Calculators</a><a class="ph" href="tel:+13059884806">(305) 988-4806</a><a class="btn btn-blue" href="#verify">Verify my scenario</a></div>
+</div></header>
+
+<div class="wrap tool-hero">
+  <p class="eyebrow">Florida purchase &amp; refinance scenarios</p>
+  <h1>Florida mortgage rate <em>tool</em>.</h1>
+  <p>Compare the same loan three ways — lower rate with points, balanced pricing, and lender credit. See rate and APR, the monthly payment, and your Florida cash to close before you ever apply. No credit pull.</p>
+</div>
+
+<div class="wrap tool">
+  <!-- INPUTS -->
+  <section class="panel">
+    <div class="panel-h"><h2>Build your scenario</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Transaction</label>
+        <div class="seg" id="seg-txn"><button data-v="purchase" aria-pressed="true">Purchase</button><button data-v="refi" aria-pressed="false">Refinance</button></div>
+      </div>
+      <div class="fld"><label>Loan type</label>
+        <div class="seg" id="seg-type"><button data-v="conventional" aria-pressed="true">Conventional</button><button data-v="fha" aria-pressed="false">FHA</button><button data-v="va" aria-pressed="false">VA</button></div>
+      </div>
+      <div class="fld"><label id="priceLbl">Home price</label>
+        <div class="moneyin"><span>$</span><input id="price" inputmode="numeric" value="650,000"></div>
+        <p class="hint" id="priceHint">Contract price of the property.</p>
+      </div>
+      <div class="fld"><label id="dpLbl">Down payment</label>
+        <div class="dp-row"><span id="dpPct">20%</span><span id="dpAmt">$130,000</span></div>
+        <input type="range" id="dp" min="3" max="50" value="20" step="1">
+        <p class="hint" id="dpHint">Most Florida buyers land between 5% and 20%.</p>
+      </div>
+      <div class="fld"><label>Occupancy</label>
+        <div class="seg" id="seg-occ"><button data-v="primary" aria-pressed="true">Primary</button><button data-v="second" aria-pressed="false">Second home</button><button data-v="investment" aria-pressed="false">Investment</button></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>Credit score</label>
+          <select class="in" id="credit">
+            <option value="800">800+</option><option value="790">780–799</option><option value="770" selected>760–779</option>
+            <option value="750">740–759</option><option value="730">720–739</option><option value="710">700–719</option>
+            <option value="690">680–699</option><option value="670">660–679</option><option value="650">640–659</option>
+            <option value="630">620–639</option><option value="610">600–619</option><option value="590">580–599</option>
+          </select>
+        </div>
+        <div class="fld"><label>Property type</label>
+          <div class="seg" id="seg-prop" style="grid-auto-flow:column"><button data-v="sfr" aria-pressed="true">Single family</button><button data-v="condo" aria-pressed="false">Condo</button></div>
+        </div>
+      </div>
+      <div class="fld"><label>Term</label>
+        <div class="seg" id="seg-term"><button data-v="30" aria-pressed="true">30-yr fixed</button><button data-v="15" aria-pressed="false">15-yr fixed</button></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>Property tax / yr</label><div class="moneyin"><span>$</span><input id="tax" inputmode="numeric" value="8,125"></div><p class="hint">≈1.25% default</p></div>
+        <div class="fld"><label>Insurance / yr</label><div class="moneyin"><span>$</span><input id="ins" inputmode="numeric" value="2,400"></div><p class="hint">FL midpoint</p></div>
+      </div>
+      <div class="computed"><div><small id="laLbl">Loan amount</small><b id="loanAmt">$520,000</b></div><div style="text-align:right"><small>Base 30-yr rate</small><b id="baseRate">6.50%</b></div></div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="panel">
+    <div class="panel-h"><h2>Same loan. Three ways to price it.</h2><span class="live" id="snapLbl">Estimate</span></div>
+    <div class="panel-b">
+      <div class="lanes" id="lanes">
+        <div class="lane" data-lane="lower" role="button" tabindex="0" aria-selected="false"><span class="pick">Selected</span><div class="tag">Lower payment</div><div class="sub">Lowest P&amp;I</div><div class="rate" data-rate>—</div><div class="apr" data-apr>— APR</div><div class="pi" data-pi>—<small> /mo P&amp;I</small></div><div class="pts cost" data-pts>—</div></div>
+        <div class="lane" data-lane="balanced" role="button" tabindex="0" aria-selected="true"><span class="pick">Selected</span><div class="tag">Balanced</div><div class="sub">Middle option</div><div class="rate" data-rate>—</div><div class="apr" data-apr>— APR</div><div class="pi" data-pi>—<small> /mo P&amp;I</small></div><div class="pts" data-pts>—</div></div>
+        <div class="lane" data-lane="credit" role="button" tabindex="0" aria-selected="false"><span class="pick">Selected</span><div class="tag">Max credit</div><div class="sub">Help with closing</div><div class="rate" data-rate>—</div><div class="apr" data-apr>— APR</div><div class="pi" data-pi>—<small> /mo P&amp;I</small></div><div class="pts credit" data-pts>—</div></div>
+      </div>
+
+      <div class="detail">
+        <div class="detail-top">
+          <div><div class="lbl">Estimated monthly payment (PITI)</div><div class="big" id="dPiti">—</div><div class="lbl" id="dRateLine">—</div></div>
+          <div class="r"><div class="lbl">Cash to close</div><b id="dCash">—</b><div class="lbl">Loan amount</div><b id="dLoan">—</b></div>
+        </div>
+        <div class="brk">
+          <h4>Monthly payment breakdown</h4>
+          <div class="line"><span>Principal &amp; interest</span><span class="v" id="mPi">—</span></div>
+          <div class="line"><span>Property taxes</span><span class="v" id="mTax">—</span></div>
+          <div class="line"><span>Homeowners insurance</span><span class="v" id="mIns">—</span></div>
+          <div class="line" id="mMiRow"><span id="mMiLbl">Mortgage insurance</span><span class="v" id="mMi">—</span></div>
+          <div class="line total"><span>Total monthly</span><span class="v" id="mTotal">—</span></div>
+
+          <h4>Estimated cash to close</h4>
+          <div class="line"><span id="ddpLbl">Down payment</span><span class="v" id="cDp">—</span></div>
+          <details class="fold"><summary><span>Closing costs</span><span class="v" id="cClose">—</span></summary>
+            <div class="line sub"><span>Lender fees</span><span class="v" id="cLender">—</span></div>
+            <div class="line sub"><span>Settlement / closing fee</span><span class="v" id="cSettle">—</span></div>
+            <div class="line sub"><span>Title-related fees</span><span class="v" id="cTitle">—</span></div>
+            <div class="line sub"><span>FL doc stamp tax on note (0.35%)</span><span class="v" id="cDoc">—</span></div>
+            <div class="line sub"><span>FL intangible tax (0.20%)</span><span class="v" id="cInt">—</span></div>
+            <div class="line sub" id="cPtsRow"><span>Discount points</span><span class="v" id="cPts">—</span></div>
+          </details>
+          <details class="fold"><summary><span>Prepaids &amp; escrow setup</span><span class="v" id="cPre">—</span></summary>
+            <div class="line sub"><span>Prepaid interest (15 days)</span><span class="v" id="cPpi">—</span></div>
+            <div class="line sub"><span>Property tax escrow (3 mo)</span><span class="v" id="cTaxEsc">—</span></div>
+            <div class="line sub"><span>Insurance escrow (3 mo)</span><span class="v" id="cInsEsc">—</span></div>
+            <div class="line sub"><span>First-year insurance prepaid</span><span class="v" id="cInsYr">—</span></div>
+          </details>
+          <div class="line credit-line" id="cCreditRow"><span>Lender credit</span><span class="v" id="cCredit">—</span></div>
+          <div class="line total"><span>Total estimated cash to close</span><span class="v" id="cTotal">—</span></div>
+        </div>
+      </div>
+
+      <p class="scenario-note" id="scenarioNote">—</p>
+      <div class="disc" id="verify">
+        <strong>Planning estimate only.</strong> Not a Loan Estimate, not an approval, not a commitment to lend, not a rate lock. Rate, APR, points, credits, payment, and cash-to-close depend on verified credit, income, assets, property, program, lock date, and actual third-party fees. Pricing here is modeled from an editable rate framework anchored to the published 30-year average — calibrate it to your live rate sheet before relying on the numbers. Matthew Gromadzki · NMLS #2560919 · Equal Housing Opportunity.
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-gold" id="smsBtn" href="#">Text me this scenario</a>
+        <a class="btn btn-line" href="tel:+13059884806">Call (305) 988-4806</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="section tint">
+  <div class="wrap">
+    <div class="shead"><p class="eyebrow">Why structure first</p><h2>One advertised rate is never the whole picture.</h2></div>
+    <div class="x3">
+      <div class="xcard"><div class="n">01</div><h3>Payment vs. upfront cost</h3><p>Every rate has a cost — points you pay or credit you take. The tradeoff isn't obvious until you see it side by side.</p></div>
+      <div class="xcard"><div class="n">02</div><h3>Points vs. lender credit</h3><p>Buying the rate down pays off on long holds; taking a credit helps when cash to close is tight.</p></div>
+      <div class="xcard"><div class="n">03</div><h3>Structure before you apply</h3><p>Get loan type, down payment, and term right first — then apply, with fewer surprises at closing.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <p class="fl">© 2026 Mortgage Broker Miami Florida · Matthew Gromadzki · NMLS #2560919. Estimates only — not a Loan Estimate, not an approval, not a commitment to lend, not a rate lock. Florida doc stamp and intangible taxes are modeled at standard statewide rates; actual figures vary by county and transaction. We do business in accordance with the Federal Fair Housing Law and the Equal Credit Opportunity Act.</p>
+  <div class="fbar"><span class="eho"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5M5 10.5V20h14v-9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Equal Housing Opportunity</span><span>Planning estimate only · Not a rate lock</span></div>
+</div></footer>
+
+<script>
+/* ============================================================
+   PRICING FRAMEWORK — illustrative & editable.
+   Calibrate these to your real wholesale rate sheet.
+   ============================================================ */
+var CFG = {
+  base30: 6.50,            // default 30-yr base (overridden by FRED /api/rates if available)
+  term15Adj: -0.50,        // 15-yr vs 30-yr
+  loanType: { conventional:0, fha:-0.125, va:-0.25 },
+  occ: { primary:0, second:0.375, investment:0.75 },
+  condoAdj: 0.25,          // conventional condo w/ LTV>75
+  credit: {800:-0.125,790:0,770:0.125,750:0.25,730:0.375,710:0.50,690:0.75,670:1.00,650:1.25,630:1.50,610:1.75,590:2.00},
+  ltvAdj: function(l){ if(l<=60)return -0.25; if(l<=70)return -0.125; if(l<=80)return 0; if(l<=85)return 0.125; if(l<=90)return 0.25; if(l<=95)return 0.375; return 0.50; },
+  lanes: {                 // rate delta from par + points (% of loan; + = cost, - = credit)
+    lower:    { d:-0.25,  pts:+1.00 },
+    balanced: { d: 0.00,  pts:-0.02 },
+    credit:   { d:+0.625, pts:-2.00 }
+  },
+  lenderFees:1150, settle:1525, title:650,
+  docStamp:0.0035, intangible:0.0020,
+  prepaidDays:15, escMonths:3,
+  fhaUpfront:0.0175, fhaAnnual:0.0055,
+  vaFundingFee:0.0215,
+  pmiByLtv: function(l){ if(l<=85)return 0.0030; if(l<=90)return 0.0049; if(l<=95)return 0.0067; return 0.0090; },
+  pmiCreditMult: function(s){ if(s>=760)return 1; if(s>=720)return 1.25; if(s>=680)return 1.7; return 2.2; }
+};
+
+var state={ txn:'purchase', type:'conventional', occ:'primary', prop:'sfr', term:'30', lane:'balanced' };
+var $=function(id){return document.getElementById(id);};
+var num=function(el){return Number(String(el.value).replace(/[^0-9.]/g,''))||0;};
+var money=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+var pct=function(n){return n.toFixed(3).replace(/0$/,'')+'%';};
+
+function pmt(loan,rate,n){ var r=rate/100/12; return r===0?loan/n:loan*r/(1-Math.pow(1+r,-n)); }
+function aprSolve(loan,payment,n,fin){ var af=loan-fin; if(af<=0)return null; var lo=0.0001,hi=0.5; for(var i=0;i<90;i++){var m=(lo+hi)/2,r=m/12;var pv=payment*(1-Math.pow(1+r,-n))/r; if(pv>af)lo=m;else hi=m;} return (lo+hi)/2*100; }
+
+function segWire(id,key){ var box=$(id); box.addEventListener('click',function(e){var b=e.target.closest('button'); if(!b)return; [].forEach.call(box.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed', x===b);}); state[key]=b.dataset.v; recalc();}); }
+segWire('seg-txn','txn'); segWire('seg-type','type'); segWire('seg-occ','occ'); segWire('seg-prop','prop'); segWire('seg-term','term');
+
+['price','tax','ins'].forEach(function(id){ var el=$(id); el.addEventListener('input',function(){ var raw=el.value.replace(/[^0-9]/g,''); el.value=raw?Number(raw).toLocaleString('en-US'):''; recalc(); }); });
+$('dp').addEventListener('input',recalc);
+[].forEach.call(document.querySelectorAll('.lane'),function(l){ l.addEventListener('click',function(){state.lane=l.dataset.lane;recalc();}); l.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();state.lane=l.dataset.lane;recalc();}}); });
+
+function compute(){
+  var price=num($('price')), dpPctV=Number($('dp').value), term=state.term==='15'?180:360;
+  var down=price*dpPctV/100, baseLoan=price-down, ltv=price>0?(baseLoan/price*100):0;
+  // financed fees
+  var loan=baseLoan;
+  if(state.type==='fha') loan=baseLoan*(1+CFG.fhaUpfront);
+  else if(state.type==='va') loan=baseLoan*(1+CFG.vaFundingFee);
+  // par rate
+  var base=(state.term==='15'?(CFG.base30+CFG.term15Adj):CFG.base30);
+  var credit=Number($('credit').value);
+  var par=base+CFG.loanType[state.type]+CFG.occ[state.occ]+(CFG.credit[credit]||0)+CFG.ltvAdj(ltv);
+  if(state.prop==='condo'&&state.type==='conventional'&&ltv>75) par+=CFG.condoAdj;
+  // mortgage insurance (monthly)
+  var miMonthly=0, miLbl='Mortgage insurance';
+  if(state.type==='fha'){ miMonthly=loan*CFG.fhaAnnual/12; miLbl='FHA mortgage insurance (MIP)'; }
+  else if(state.type==='conventional'&&ltv>80){ miMonthly=baseLoan*CFG.pmiByLtv(ltv)*CFG.pmiCreditMult(credit)/12; miLbl='Private mortgage insurance (PMI)'; }
+  var taxYr=num($('tax')), insYr=num($('ins'));
+  return {price:price,down:down,ltv:ltv,baseLoan:baseLoan,loan:loan,term:term,par:par,miMonthly:miMonthly,miLbl:miLbl,taxYr:taxYr,insYr:insYr,credit:credit};
+}
+
+function lane(c,key){
+  var L=CFG.lanes[key], rate=c.par+L.d, p=pmt(c.loan,rate,c.term);
+  var ptsAmt=L.pts/100*c.loan; // + cost / - credit
+  var finForApr=CFG.lenderFees+Math.max(ptsAmt,0);
+  var apr=aprSolve(c.loan,p,c.term,finForApr)||rate;
+  return {rate:rate,apr:apr,pi:p,ptsAmt:ptsAmt};
+}
+
+function recalc(){
+  var c=compute();
+  // labels for refi
+  $('priceLbl').textContent = state.txn==='refi'?'Estimated home value':'Home price';
+  $('dpLbl').textContent = state.txn==='refi'?'Equity':'Down payment';
+  $('ddpLbl').textContent = state.txn==='refi'?'Equity / paid off':'Down payment';
+  $('priceHint').textContent = state.txn==='refi'?'Current estimated value.':'Contract price of the property.';
+  $('dp').value=$('dp').value;
+  $('dpPct').textContent=Number($('dp').value)+'%';
+  $('dpAmt').textContent=money(c.down);
+  $('loanAmt').textContent=money(c.loan);
+  $('laLbl').textContent = (state.type==='fha'||state.type==='va')?'Loan amount (incl. financed fee)':'Loan amount';
+  $('baseRate').textContent=(state.term==='15'?(CFG.base30+CFG.term15Adj):CFG.base30).toFixed(2)+'%';
+
+  // lanes
+  var L={};
+  ['lower','balanced','credit'].forEach(function(k){
+    L[k]=lane(c,k);
+    var el=document.querySelector('.lane[data-lane="'+k+'"]');
+    el.setAttribute('aria-selected', state.lane===k);
+    el.querySelector('[data-rate]').textContent=L[k].rate.toFixed(3)+'%';
+    el.querySelector('[data-apr]').textContent=L[k].apr.toFixed(3)+'% APR';
+    el.querySelector('[data-pi]').innerHTML=money(L[k].pi)+'<small> /mo P&amp;I</small>';
+    var pe=el.querySelector('[data-pts]');
+    if(L[k].ptsAmt>5){pe.className='pts cost';pe.textContent='+'+money(L[k].ptsAmt)+' in points';}
+    else if(L[k].ptsAmt<-5){pe.className='pts credit';pe.textContent=money(-L[k].ptsAmt)+' lender credit';}
+    else {pe.className='pts';pe.textContent='≈ par pricing';}
+  });
+
+  var s=L[state.lane], n=c.term;
+  var mTax=c.taxYr/12, mIns=c.insYr/12, total=s.pi+mTax+mIns+c.miMonthly;
+  $('dPiti').textContent=money(total);
+  $('dRateLine').textContent=s.rate.toFixed(3)+'% · '+s.apr.toFixed(3)+'% APR · '+(state.term==='15'?'15':'30')+'-yr fixed';
+  $('dLoan').textContent=money(c.loan);
+  $('mPi').textContent=money(s.pi);
+  $('mTax').textContent=money(mTax);
+  $('mIns').textContent=money(mIns);
+  if(c.miMonthly>0){$('mMiRow').style.display='';$('mMiLbl').textContent=c.miLbl;$('mMi').textContent=money(c.miMonthly);}else{$('mMiRow').style.display='none';}
+  $('mTotal').textContent=money(total);
+
+  // cash to close
+  var docTax=c.loan*CFG.docStamp, intTax=c.loan*CFG.intangible;
+  var ptsCost=Math.max(s.ptsAmt,0), credit=Math.max(-s.ptsAmt,0);
+  var closing=CFG.lenderFees+CFG.settle+CFG.title+docTax+intTax+ptsCost;
+  var dailyInt=c.loan*(s.rate/100)/360, ppi=dailyInt*CFG.prepaidDays;
+  var taxEsc=mTax*CFG.escMonths, insEsc=mIns*CFG.escMonths, insYr=c.insYr;
+  var prepaids=ppi+taxEsc+insEsc+insYr;
+  var cash=(state.txn==='refi'?0:c.down)+closing+prepaids-credit;
+
+  $('cDp').textContent=money(state.txn==='refi'?0:c.down);
+  $('cClose').textContent=money(closing);
+  $('cLender').textContent=money(CFG.lenderFees);
+  $('cSettle').textContent=money(CFG.settle);
+  $('cTitle').textContent=money(CFG.title);
+  $('cDoc').textContent=money(docTax);
+  $('cInt').textContent=money(intTax);
+  if(ptsCost>5){$('cPtsRow').style.display='';$('cPts').textContent=money(ptsCost);}else{$('cPtsRow').style.display='none';}
+  $('cPre').textContent=money(prepaids);
+  $('cPpi').textContent=money(ppi);
+  $('cTaxEsc').textContent=money(taxEsc);
+  $('cInsEsc').textContent=money(insEsc);
+  $('cInsYr').textContent=money(insYr);
+  if(credit>5){$('cCreditRow').style.display='';$('cCredit').textContent='−'+money(credit);}else{$('cCreditRow').style.display='none';}
+  $('cTotal').textContent=money(cash);
+  $('dCash').textContent=money(cash);
+
+  // scenario note + sms
+  var typeName={conventional:'Conventional',fha:'FHA',va:'VA'}[state.type];
+  var laneName={lower:'Lower-payment',balanced:'Balanced',credit:'Max-credit'}[state.lane];
+  $('scenarioNote').textContent='Scenario: '+typeName+' '+state.txn+', '+state.occ+', '+(state.prop==='condo'?'condo':'single family')+', '+money(c.price)+' '+(state.txn==='refi'?'value':'price')+', '+money(c.loan)+' loan, '+Number($('dp').value)+'% '+(state.txn==='refi'?'equity':'down')+', '+(state.term==='15'?'15':'30')+'-yr — '+laneName+' '+s.rate.toFixed(3)+'%.';
+  var body='Matthew, can you verify this scenario?%0A'+typeName+' '+state.txn+' · '+(state.term==='15'?'15':'30')+'-yr · '+money(c.price)+' · '+Number($('dp').value)+'% down · '+laneName+' '+s.rate.toFixed(3)+'% ('+s.apr.toFixed(3)+'% APR) · '+money(total)+'/mo · '+money(cash)+' cash to close';
+  $('smsBtn').href='sms:+13059884806?&body='+body;
+}
+
+/* anchor base rate to FRED 30-yr if the /api/rates worker is live */
+(function(){
+  $('updDate').textContent=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  fetch('/api/rates',{headers:{accept:'application/json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
+    if(d.thirty&&d.thirty.value){CFG.base30=parseFloat(d.thirty.value);}
+    recalc();
+  }).catch(function(){ recalc(); });
+})();
+recalc();
+</script>
+</body>
+</html>

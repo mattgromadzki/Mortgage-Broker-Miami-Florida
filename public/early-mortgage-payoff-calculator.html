@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Early Mortgage Payoff Calculator | Mortgage Broker Miami</title>
+<meta name="description" content="Pick a target payoff date and see the monthly payment it takes to get there — plus the interest you'd save by paying your mortgage off early.">
+<link rel="stylesheet" href="calc.css"></head><body>
+<div id="site-hdr"></div>
+<div class="wrap calc-hero">
+  <p class="eyebrow">Payoff goal</p>
+  <h1>Early mortgage payoff <em>calculator</em>.</h1>
+  <p>Pick the year you want to be mortgage-free. This works backward to the monthly payment it takes — and shows the interest you'd save getting there early.</p>
+</div>
+<div class="wrap calc">
+  <section class="panel">
+    <div class="panel-h"><h2>Your mortgage &amp; goal</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Current balance</label><div class="moneyin"><span>$</span><input id="bal" inputmode="numeric" value="350,000"></div></div>
+      <div class="two">
+        <div class="fld"><label>Interest rate</label><div class="unitin"><input id="rate" inputmode="decimal" value="6.50"><span>%</span></div></div>
+        <div class="fld"><label>Years left on loan</label><div class="unitin"><input id="curYears" inputmode="decimal" value="28"><span>yr</span></div></div>
+      </div>
+      <div class="fld"><label>Pay it off in…</label><div class="row-flex"><span id="goalLbl">15 years</span><span id="goalNote">13 yr sooner</span></div><input type="range" id="goal" min="3" max="30" value="15" step="1"></div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-h"><h2>To hit that goal</h2></div>
+    <div class="panel-b">
+      <div class="result-top"><div><div class="lbl">Monthly payment needed</div><div class="big" id="reqPmt">—</div><div class="lbl" id="extraNote">—</div></div>
+        <div class="r"><div class="lbl">Interest saved</div><b id="intSaved">—</b><div class="lbl">Mortgage-free</div><b id="freeYear">—</b></div></div>
+      <div class="savings">
+        <div class="scard good"><small>Extra per month</small><b id="extra">—</b></div>
+        <div class="scard"><small>Current payment</small><b id="curPmt">—</b></div>
+      </div>
+      <div class="brk">
+        <h4>The comparison</h4>
+        <div class="line"><span>Current payment (P&amp;I)</span><span class="v" id="dCur">—</span></div>
+        <div class="line"><span>Payment to hit your goal</span><span class="v" id="dReq">—</span></div>
+        <div class="line"><span>Interest if you keep current pace</span><span class="v" id="dCurInt">—</span></div>
+        <div class="line"><span>Interest on the faster payoff</span><span class="v" id="dNewInt">—</span></div>
+        <div class="line total"><span>Total interest saved</span><span class="v" id="dSaved">—</span></div>
+      </div>
+      <div id="disc"></div><div id="cta"></div>
+    </div>
+  </section>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>Set a date, hit the number</h2>
+  <p>Most payoff calculators ask how much extra you'll pay; this one starts from the finish line. Choose the year you want to own the home free and clear, and it solves for the payment that gets you there, the extra above your current payment, and the interest you'd avoid. If the required payment feels steep, slide the goal out a few years — even shaving five years off a 30-year loan saves a meaningful amount of interest. Want to weigh this against investing the difference? Let's talk it through.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+bindMoney('bal',calc);bindNum('rate',calc);bindNum('curYears',calc);
+document.getElementById('goal').addEventListener('input',calc);
+function calc(){
+  var bal=num(document.getElementById('bal')),rate=num(document.getElementById('rate')),curN=Math.round(num(document.getElementById('curYears'))*12);if(curN<1)curN=1;
+  var goalY=Number(document.getElementById('goal').value),goalN=goalY*12;
+  var curPmt=monthlyPI(bal,rate,curN),curInt=curPmt*curN-bal;
+  var sooner=Math.round((curN-goalN)/12);
+  document.getElementById('goalLbl').textContent=goalY+' years';
+  document.getElementById('goalNote').textContent=sooner>0?sooner+' yr sooner':(sooner===0?'about the same':'slower than now');
+  var reqPmt, newInt, extra;
+  if(goalN>=curN){reqPmt=curPmt;newInt=curInt;extra=0;}
+  else{reqPmt=monthlyPI(bal,rate,goalN);newInt=reqPmt*goalN-bal;extra=reqPmt-curPmt;}
+  var saved=curInt-newInt;
+  var d=new Date();var fy=d.getFullYear()+goalY;
+  document.getElementById('reqPmt').textContent=money(reqPmt);
+  document.getElementById('extraNote').textContent=extra>0?('that\u2019s '+money(extra)+' more per month'):'no acceleration needed';
+  document.getElementById('intSaved').textContent=money(Math.max(saved,0));
+  document.getElementById('freeYear').textContent=fy;
+  document.getElementById('extra').textContent=extra>0?('+'+money(extra)):'$0';
+  document.getElementById('curPmt').textContent=money(curPmt);
+  document.getElementById('dCur').textContent=money(curPmt);document.getElementById('dReq').textContent=money(reqPmt);
+  document.getElementById('dCurInt').textContent=money(curInt);document.getElementById('dNewInt').textContent=money(newInt);
+  document.getElementById('dSaved').textContent=money(Math.max(saved,0));
+}
+document.getElementById('disc').innerHTML=disclaimer('Assumes a fixed rate, extra applied to principal, and no prepayment penalty.');
+document.getElementById('cta').innerHTML=ctaRow();
+buildChrome('early-mortgage-payoff-calculator');calc();
+</script>
+</body></html>

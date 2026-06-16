@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Refinance Break-Even Calculator | Mortgage Broker Miami</title>
+<meta name="description" content="See how many months it takes for refinance savings to pay back the closing costs — and the lifetime interest impact.">
+<link rel="stylesheet" href="calc.css"></head><body>
+<div id="site-hdr"></div>
+<div class="wrap calc-hero">
+  <p class="eyebrow">Refinance</p>
+  <h1>Refinance break-even <em>calculator</em>.</h1>
+  <p>A lower rate only helps if you keep the loan long enough to recover the closing costs. See your monthly savings, your break-even month, and the lifetime interest difference.</p>
+</div>
+<div class="wrap calc">
+  <section class="panel">
+    <div class="panel-h"><h2>Current vs. new loan</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Current loan balance</label><div class="moneyin"><span>$</span><input id="bal" inputmode="numeric" value="380,000"></div></div>
+      <div class="two">
+        <div class="fld"><label>Current rate</label><div class="unitin"><input id="curRate" inputmode="decimal" value="7.50"><span>%</span></div></div>
+        <div class="fld"><label>Years left</label><div class="unitin"><input id="curYears" inputmode="decimal" value="27"><span>yr</span></div></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>New rate</label><div class="unitin"><input id="newRate" inputmode="decimal" value="6.25"><span>%</span></div></div>
+        <div class="fld"><label>New term</label><select class="in" id="newTerm"><option value="30" selected>30 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div>
+      </div>
+      <div class="fld"><label>Refinance closing costs</label><div class="moneyin"><span>$</span><input id="costs" inputmode="numeric" value="6,500"></div><p class="hint">Lender, title, and Florida taxes on the new loan.</p></div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-h"><h2>Your break-even</h2></div>
+    <div class="panel-b">
+      <div class="result-top"><div><div class="lbl">Break-even point</div><div class="big" id="be">—</div><div class="lbl" id="beNote">—</div></div>
+        <div class="r"><div class="lbl">New payment</div><b id="newPmt">—</b><div class="lbl">vs. current</div><b id="curPmt">—</b></div></div>
+      <div class="savings">
+        <div class="scard good"><small>Monthly savings</small><b id="save">—</b></div>
+        <div class="scard"><small>Lifetime interest difference</small><b id="lifeInt">—</b></div>
+      </div>
+      <div class="brk">
+        <h4>The details</h4>
+        <div class="line"><span>Current monthly payment (P&amp;I)</span><span class="v" id="dCur">—</span></div>
+        <div class="line"><span>New monthly payment (P&amp;I)</span><span class="v" id="dNew">—</span></div>
+        <div class="line"><span>Interest left on current loan</span><span class="v" id="dCurInt">—</span></div>
+        <div class="line"><span>Interest on new loan</span><span class="v" id="dNewInt">—</span></div>
+        <div class="line total"><span>Net lifetime savings (after costs)</span><span class="v" id="dNet">—</span></div>
+      </div>
+      <div id="disc"></div><div id="cta"></div>
+    </div>
+  </section>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>Reading the break-even</h2>
+  <p>The break-even month is when your accumulated monthly savings finally exceed what you paid to refinance. Plan to stay past it and the refi pays off; sell or refinance again before it and it may not. Watch the term too — restarting a 30-year clock lowers the payment but can add interest over the full life, while a shorter term often saves interest at a higher payment. The lifetime number below accounts for both.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+bindMoney('bal',calc);bindMoney('costs',calc);['curRate','curYears','newRate'].forEach(function(id){bindNum(id,calc);});
+document.getElementById('newTerm').addEventListener('change',calc);
+function calc(){
+  var bal=num(document.getElementById('bal')),curRate=num(document.getElementById('curRate')),curN=Math.round(num(document.getElementById('curYears'))*12);
+  var newRate=num(document.getElementById('newRate')),newN=Number(document.getElementById('newTerm').value)*12,costs=num(document.getElementById('costs'));
+  if(curN<1)curN=1;
+  var curPmt=monthlyPI(bal,curRate,curN),newPmt=monthlyPI(bal,newRate,newN);
+  var save=curPmt-newPmt;
+  var curInt=curPmt*curN-bal,newInt=newPmt*newN-bal;
+  var net=(curPmt*curN)-(newPmt*newN)-costs;
+  document.getElementById('newPmt').textContent=money(newPmt);
+  document.getElementById('curPmt').textContent=money(curPmt);
+  document.getElementById('dCur').textContent=money(curPmt);document.getElementById('dNew').textContent=money(newPmt);
+  document.getElementById('dCurInt').textContent=money(curInt);document.getElementById('dNewInt').textContent=money(newInt);
+  document.getElementById('save').textContent=(save>=0?'':'-')+money(Math.abs(save))+'/mo';
+  document.getElementById('lifeInt').textContent=(curInt-newInt>=0?'':'-')+money(Math.abs(curInt-newInt));
+  document.getElementById('dNet').textContent=(net>=0?'':'-')+money(Math.abs(net));
+  if(save>0){var m=Math.ceil(costs/save);document.getElementById('be').textContent=yrsMonths(m);document.getElementById('beNote').textContent='to recover '+money(costs)+' in costs';
+    document.querySelector('.scard.good').classList.add('good');}
+  else{document.getElementById('be').textContent='No monthly savings';document.getElementById('beNote').textContent='New payment is higher — value is in interest/term, not cash flow';}
+}
+document.getElementById('disc').innerHTML=disclaimer('Assumes costs paid at closing and you keep the loan to term.');
+document.getElementById('cta').innerHTML=ctaRow();
+buildChrome('refinance-break-even-calculator');calc();
+</script>
+</body></html>

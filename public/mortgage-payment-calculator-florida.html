@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Florida Mortgage Payment Calculator | Mortgage Broker Miami</title>
+<meta name="description" content="Estimate a Florida monthly mortgage payment with realistic Florida property tax, homeowners insurance, HOA and CDD fees, and PMI.">
+<link rel="stylesheet" href="calc.css"></head><body>
+<div id="site-hdr"></div>
+<div class="wrap calc-hero">
+  <p class="eyebrow">Florida calculator</p>
+  <h1>Florida mortgage payment <em>calculator</em>.</h1>
+  <p>Florida payments are driven as much by insurance, HOA and CDD fees as by the rate. This version starts from Florida-realistic defaults so the estimate is closer to reality.</p>
+</div>
+<div class="wrap calc">
+  <section class="panel">
+    <div class="panel-h"><h2>Your Florida home</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Home price</label><div class="moneyin"><span>$</span><input id="price" inputmode="numeric" value="450,000"></div></div>
+      <div class="fld"><label>Down payment</label><div class="row-flex"><span id="dpPct">10%</span><span id="dpAmt">$45,000</span></div><input type="range" id="dp" min="0" max="50" value="10" step="1"></div>
+      <div class="two">
+        <div class="fld"><label>Interest rate</label><div class="unitin"><input id="rate" inputmode="decimal" value="6.50"><span>%</span></div></div>
+        <div class="fld"><label>Loan term</label><select class="in" id="term"><option value="360" selected>30 years</option><option value="240">20 years</option><option value="180">15 years</option></select></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>Property tax / yr</label><div class="moneyin"><span>$</span><input id="tax" inputmode="numeric" value="4,950"></div><p class="hint">≈1.1% FL midpoint</p></div>
+        <div class="fld"><label>Insurance / yr</label><div class="moneyin"><span>$</span><input id="ins" inputmode="numeric" value="3,600"></div><p class="hint">FL runs high</p></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>HOA / mo</label><div class="moneyin"><span>$</span><input id="hoa" inputmode="numeric" value="0"></div></div>
+        <div class="fld"><label>CDD / yr</label><div class="moneyin"><span>$</span><input id="cdd" inputmode="numeric" value="0"></div><p class="hint">Common in newer FL communities</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-h"><h2>Your monthly payment</h2></div>
+    <div class="panel-b">
+      <div class="result-top"><div><div class="lbl">Estimated monthly payment</div><div class="big" id="pmt">—</div><div class="lbl" id="rateLine">—</div></div>
+        <div class="r"><div class="lbl">Loan amount</div><b id="loan">—</b><div class="lbl">Total interest</div><b id="totint">—</b></div></div>
+      <div class="donut-wrap"><div id="donut"></div><div style="flex:1">
+        <div class="brk">
+          <div class="line"><span><span class="dot" style="background:var(--blue)"></span>Principal &amp; interest</span><span class="v" id="bPi">—</span></div>
+          <div class="line"><span><span class="dot" style="background:var(--gold)"></span>Property tax</span><span class="v" id="bTax">—</span></div>
+          <div class="line"><span><span class="dot" style="background:var(--navy-700)"></span>Insurance</span><span class="v" id="bIns">—</span></div>
+          <div class="line" id="rHoa"><span><span class="dot" style="background:var(--green)"></span>HOA</span><span class="v" id="bHoa">—</span></div>
+          <div class="line" id="rCdd"><span><span class="dot" style="background:#7C6BD6"></span>CDD</span><span class="v" id="bCdd">—</span></div>
+          <div class="line" id="rPmi"><span><span class="dot" style="background:var(--red)"></span>PMI</span><span class="v" id="bPmi">—</span></div>
+          <div class="line total"><span>Total monthly</span><span class="v" id="bTotal">—</span></div>
+        </div>
+      </div></div>
+      <div id="disc"></div>
+      <div id="cta"></div>
+    </div>
+  </section>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>Why Florida payments surprise people</h2>
+  <p>In much of Florida, homeowners insurance and HOA or CDD fees move the monthly payment more than a small rate change does. Insurance has risen sharply, condo and newer-community fees can be substantial, and CDD assessments fund community infrastructure in many developments. Pricing the payment with realistic Florida numbers up front avoids surprises later — call if you want help pinning down the real figures for a specific home.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+function gc(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+bindMoney('price',calc);bindMoney('tax',calc);bindMoney('ins',calc);bindMoney('hoa',calc);bindMoney('cdd',calc);bindNum('rate',calc);
+document.getElementById('dp').addEventListener('input',calc);document.getElementById('term').addEventListener('change',calc);
+function calc(){
+  var price=num(document.getElementById('price')),dpPct=Number(document.getElementById('dp').value),n=Number(document.getElementById('term').value);
+  var down=price*dpPct/100,loan=Math.max(price-down,0),ltv=price?loan/price*100:0,rate=num(document.getElementById('rate'));
+  var pi=loan>0?monthlyPI(loan,rate,n):0,tax=num(document.getElementById('tax'))/12,ins=num(document.getElementById('ins'))/12,hoa=num(document.getElementById('hoa')),cdd=num(document.getElementById('cdd'))/12;
+  var pmi=0; if(ltv>80){var f=ltv>95?0.009:ltv>90?0.0067:ltv>85?0.0049:0.003;pmi=loan*f/12;}
+  var total=pi+tax+ins+hoa+cdd+pmi,tot=pi*n-loan;
+  document.getElementById('dpPct').textContent=dpPct+'%';document.getElementById('dpAmt').textContent=money(down);
+  document.getElementById('pmt').textContent=money(total);document.getElementById('rateLine').textContent=rate.toFixed(3)+'% · '+(n/12)+'-yr fixed';
+  document.getElementById('loan').textContent=money(loan);document.getElementById('totint').textContent=money(tot);
+  document.getElementById('bPi').textContent=money(pi);document.getElementById('bTax').textContent=money(tax);document.getElementById('bIns').textContent=money(ins);
+  document.getElementById('bHoa').textContent=money(hoa);document.getElementById('bCdd').textContent=money(cdd);document.getElementById('bPmi').textContent=money(pmi);
+  document.getElementById('bTotal').textContent=money(total);
+  document.getElementById('rHoa').style.display=hoa>0?'':'none';document.getElementById('rCdd').style.display=cdd>0?'':'none';document.getElementById('rPmi').style.display=pmi>0?'':'none';
+  donut('donut',[{value:pi,color:gc('--blue')},{value:tax,color:gc('--gold')},{value:ins,color:gc('--navy-700')},{value:hoa,color:gc('--green')},{value:cdd,color:'#7C6BD6'},{value:pmi,color:gc('--red')}],150);
+}
+document.getElementById('disc').innerHTML=disclaimer('Florida taxes, insurance, HOA and CDD vary widely by county and community.');
+document.getElementById('cta').innerHTML=ctaRow();
+buildChrome('mortgage-payment-calculator-florida');calc();
+</script>
+</body></html>

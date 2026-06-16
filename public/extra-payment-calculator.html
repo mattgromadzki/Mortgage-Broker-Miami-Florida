@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extra Payment Calculator | Mortgage Broker Miami</title>
+<meta name="description" content="See how much interest and time you save by paying a little extra on your mortgage each month or as a one-time lump sum.">
+<link rel="stylesheet" href="calc.css"></head><body>
+<div id="site-hdr"></div>
+<div class="wrap calc-hero">
+  <p class="eyebrow">Pay it down faster</p>
+  <h1>Extra payment <em>calculator</em>.</h1>
+  <p>A little extra toward principal each month can shave years off your loan and save serious interest. See exactly how much.</p>
+</div>
+<div class="wrap calc">
+  <section class="panel">
+    <div class="panel-h"><h2>Your loan</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Loan amount / current balance</label><div class="moneyin"><span>$</span><input id="bal" inputmode="numeric" value="400,000"></div></div>
+      <div class="two">
+        <div class="fld"><label>Interest rate</label><div class="unitin"><input id="rate" inputmode="decimal" value="6.50"><span>%</span></div></div>
+        <div class="fld"><label>Term</label><select class="in" id="term"><option value="360" selected>30 years</option><option value="240">20 years</option><option value="180">15 years</option></select></div>
+      </div>
+      <div class="fld"><label>Extra payment per month</label><div class="moneyin"><span>$</span><input id="extra" inputmode="numeric" value="300"></div><p class="hint">Applied straight to principal, on top of your normal payment.</p></div>
+      <div class="fld"><label>One-time extra payment (optional)</label><div class="moneyin"><span>$</span><input id="lump" inputmode="numeric" value="0"></div><p class="hint">A lump sum applied now.</p></div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-h"><h2>What you save</h2></div>
+    <div class="panel-b">
+      <div class="result-top"><div><div class="lbl">Interest saved</div><div class="big" id="intSaved">—</div><div class="lbl" id="timeNote">—</div></div>
+        <div class="r"><div class="lbl">New payoff</div><b id="newPayoff">—</b><div class="lbl">Normal payoff</div><b id="basePayoff">—</b></div></div>
+      <div class="savings">
+        <div class="scard good"><small>Time saved</small><b id="timeSaved">—</b></div>
+        <div class="scard"><small>Monthly payment + extra</small><b id="newPmt">—</b></div>
+      </div>
+      <div class="brk">
+        <h4>Side by side</h4>
+        <div class="line"><span>Base monthly payment (P&amp;I)</span><span class="v" id="dBase">—</span></div>
+        <div class="line"><span>Total interest — no extra</span><span class="v" id="dBaseInt">—</span></div>
+        <div class="line"><span>Total interest — with extra</span><span class="v" id="dNewInt">—</span></div>
+        <div class="line total"><span>Total interest saved</span><span class="v" id="dSaved">—</span></div>
+      </div>
+      <div id="disc"></div><div id="cta"></div>
+    </div>
+  </section>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>Why a little extra goes a long way</h2>
+  <p>Early in a mortgage, most of each payment is interest. Every extra dollar applied to principal skips all the future interest that dollar would have generated — so even a modest monthly amount, paid consistently, can cut years off the loan. Make sure extra payments are applied to principal, and confirm your loan has no prepayment penalty (most don't). If cash flow is tight, a refinance or recasting might fit better — happy to talk it through.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+bindMoney('bal',calc);bindMoney('extra',calc);bindMoney('lump',calc);bindNum('rate',calc);
+document.getElementById('term').addEventListener('change',calc);
+function calc(){
+  var bal=num(document.getElementById('bal')),rate=num(document.getElementById('rate')),n=Number(document.getElementById('term').value);
+  var extra=num(document.getElementById('extra')),lump=num(document.getElementById('lump'));
+  var basePmt=monthlyPI(bal,rate,n),baseInt=basePmt*n-bal;
+  var startBal=Math.max(bal-lump,0);
+  var res=runSchedule(startBal,rate,basePmt,extra);
+  var newInt=res.interest+ (0); // lump reduces principal (no interest cost shown separately)
+  var saved=baseInt-newInt, monthsSaved=n-res.months;
+  document.getElementById('intSaved').textContent=money(Math.max(saved,0));
+  document.getElementById('timeNote').textContent='over the life of the loan';
+  document.getElementById('newPayoff').textContent=yrsMonths(res.months);
+  document.getElementById('basePayoff').textContent=yrsMonths(n);
+  document.getElementById('timeSaved').textContent=monthsSaved>0?yrsMonths(monthsSaved)+' sooner':'—';
+  document.getElementById('newPmt').textContent=money(basePmt+extra);
+  document.getElementById('dBase').textContent=money(basePmt);
+  document.getElementById('dBaseInt').textContent=money(baseInt);
+  document.getElementById('dNewInt').textContent=money(newInt);
+  document.getElementById('dSaved').textContent=money(Math.max(saved,0));
+}
+document.getElementById('disc').innerHTML=disclaimer('Assumes extra goes to principal and the rate is fixed.');
+document.getElementById('cta').innerHTML=ctaRow();
+buildChrome('extra-payment-calculator');calc();
+</script>
+</body></html>

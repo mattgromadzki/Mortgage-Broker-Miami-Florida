@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Debt Consolidation Refinance Calculator | Mortgage Broker Miami</title>
+<meta name="description" content="See what your monthly payment looks like if you roll high-rate debt into a cash-out refinance — and the tradeoff of stretching it over a mortgage term.">
+<link rel="stylesheet" href="calc.css"></head><body>
+<div id="site-hdr"></div>
+<div class="wrap calc-hero">
+  <p class="eyebrow">Cash-out refinance</p>
+  <h1>Debt consolidation <em>calculator</em>.</h1>
+  <p>Rolling high-rate credit cards and loans into your mortgage can cut your total monthly payment — but it stretches that debt over a longer term. See both sides before you decide.</p>
+</div>
+<div class="wrap calc">
+  <section class="panel">
+    <div class="panel-h"><h2>Your debts</h2><span class="live">Live</span></div>
+    <div class="panel-b">
+      <div class="fld"><label>Current mortgage balance</label><div class="moneyin"><span>$</span><input id="mort" inputmode="numeric" value="320,000"></div></div>
+      <div class="two">
+        <div class="fld"><label>Mortgage rate</label><div class="unitin"><input id="mortRate" inputmode="decimal" value="6.75"><span>%</span></div></div>
+        <div class="fld"><label>Years left</label><div class="unitin"><input id="mortYears" inputmode="decimal" value="28"><span>yr</span></div></div>
+      </div>
+      <div class="fld"><label style="margin-bottom:10px">Other debts to roll in</label>
+        <div class="two" style="margin-bottom:10px"><div class="moneyin"><span>$</span><input id="d1bal" inputmode="numeric" value="18,000" placeholder="Balance"></div><div class="moneyin"><span>$</span><input id="d1pay" inputmode="numeric" value="540"></div></div>
+        <p class="hint" style="margin:-4px 0 12px">Credit cards — balance &amp; current monthly payment</p>
+        <div class="two" style="margin-bottom:10px"><div class="moneyin"><span>$</span><input id="d2bal" inputmode="numeric" value="22,000"></div><div class="moneyin"><span>$</span><input id="d2pay" inputmode="numeric" value="450"></div></div>
+        <p class="hint" style="margin:-4px 0 12px">Auto / personal loan — balance &amp; monthly payment</p>
+        <div class="two"><div class="moneyin"><span>$</span><input id="d3bal" inputmode="numeric" value="0"></div><div class="moneyin"><span>$</span><input id="d3pay" inputmode="numeric" value="0"></div></div>
+        <p class="hint" style="margin-top:4px">Other — balance &amp; monthly payment</p>
+      </div>
+      <div class="two">
+        <div class="fld"><label>New refi rate</label><div class="unitin"><input id="newRate" inputmode="decimal" value="6.50"><span>%</span></div></div>
+        <div class="fld"><label>New term</label><select class="in" id="newTerm"><option value="30" selected>30 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div>
+      </div>
+      <div class="fld"><label>Closing costs (rolled in)</label><div class="moneyin"><span>$</span><input id="costs" inputmode="numeric" value="7,000"></div></div>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-h"><h2>Before vs. after</h2></div>
+    <div class="panel-b">
+      <div class="result-top"><div><div class="lbl">New single monthly payment</div><div class="big" id="newPmt">—</div><div class="lbl" id="rateLine">—</div></div>
+        <div class="r"><div class="lbl">New loan amount</div><b id="newLoan">—</b><div class="lbl">Cash-out used</div><b id="cashUsed">—</b></div></div>
+      <div class="savings">
+        <div class="scard good"><small>Monthly payment change</small><b id="save">—</b></div>
+        <div class="scard"><small>Today's total payments</small><b id="curTotal">—</b></div>
+      </div>
+      <div class="brk">
+        <h4>What you pay now</h4>
+        <div class="line"><span>Current mortgage (P&amp;I)</span><span class="v" id="dMort">—</span></div>
+        <div class="line"><span>Other debt payments</span><span class="v" id="dOther">—</span></div>
+        <div class="line total"><span>Total monthly today</span><span class="v" id="dCur">—</span></div>
+        <h4>After consolidating</h4>
+        <div class="line"><span>New mortgage payment (P&amp;I)</span><span class="v" id="dNew">—</span></div>
+        <div class="line"><span>Other debt payments</span><span class="v">$0</span></div>
+        <div class="line total"><span>Total monthly after</span><span class="v" id="dAfter">—</span></div>
+      </div>
+      <div class="disc" id="warn"></div>
+      <div id="disc"></div><div id="cta"></div>
+    </div>
+  </section>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>Lower payment, longer tail</h2>
+  <p>Consolidating works because mortgage rates are usually far below credit-card rates, and the balance is spread over a long term — so the monthly number drops, sometimes dramatically. The tradeoff is time: a credit card you might have cleared in a few years becomes part of a 30-year loan, which can mean more total interest unless you keep paying extra. Use the savings to get ahead, not just to free up room to borrow again. We'll model your exact situation honestly before you commit.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+['mort','d1bal','d1pay','d2bal','d2pay','d3bal','d3pay','costs'].forEach(function(id){bindMoney(id,calc);});
+['mortRate','mortYears','newRate'].forEach(function(id){bindNum(id,calc);});
+document.getElementById('newTerm').addEventListener('change',calc);
+function calc(){
+  var mort=num(document.getElementById('mort')),mortRate=num(document.getElementById('mortRate')),mortN=Math.round(num(document.getElementById('mortYears'))*12);if(mortN<1)mortN=1;
+  var dBal=num(document.getElementById('d1bal'))+num(document.getElementById('d2bal'))+num(document.getElementById('d3bal'));
+  var dPay=num(document.getElementById('d1pay'))+num(document.getElementById('d2pay'))+num(document.getElementById('d3pay'));
+  var newRate=num(document.getElementById('newRate')),newN=Number(document.getElementById('newTerm').value)*12,costs=num(document.getElementById('costs'));
+  var curMortPmt=monthlyPI(mort,mortRate,mortN),curTotal=curMortPmt+dPay;
+  var newLoan=mort+dBal+costs,newPmt=monthlyPI(newLoan,newRate,newN);
+  var change=curTotal-newPmt;
+  document.getElementById('newPmt').textContent=money(newPmt);
+  document.getElementById('rateLine').textContent=newRate.toFixed(3)+'% · '+(newN/12)+'-yr fixed';
+  document.getElementById('newLoan').textContent=money(newLoan);
+  document.getElementById('cashUsed').textContent=money(dBal);
+  document.getElementById('curTotal').textContent=money(curTotal);
+  document.getElementById('dMort').textContent=money(curMortPmt);document.getElementById('dOther').textContent=money(dPay);
+  document.getElementById('dCur').textContent=money(curTotal);document.getElementById('dNew').textContent=money(newPmt);document.getElementById('dAfter').textContent=money(newPmt);
+  var sc=document.querySelector('.scard.good');
+  if(change>=0){document.getElementById('save').textContent=money(change)+'/mo lower';sc.classList.add('good');}
+  else{document.getElementById('save').textContent=money(-change)+'/mo higher';sc.classList.remove('good');}
+  document.getElementById('warn').innerHTML='<strong>Heads up:</strong> consolidating moves '+money(dBal)+' of shorter-term debt onto a '+(newN/12)+'-year mortgage. The monthly payment drops, but paying it over the full term can cost more interest unless you keep paying extra toward the balance.';
+}
+document.getElementById('disc').innerHTML=disclaimer('Cash-out refinances have equity, LTV, and credit requirements.');
+document.getElementById('cta').innerHTML=ctaRow();
+buildChrome('debt-consolidation-refinance-calculator');calc();
+</script>
+</body></html>

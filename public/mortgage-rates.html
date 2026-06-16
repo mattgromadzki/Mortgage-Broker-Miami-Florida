@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>National Average Mortgage Rates Over Time | Mortgage Broker Miami</title>
+<meta name="description" content="Track national average 30- and 15-year fixed mortgage rates over time, sourced from Freddie Mac's weekly survey via FRED.">
+<link rel="stylesheet" href="calc.css">
+<style>
+.rt-head{max-width:760px}.rt-head h1{font-size:clamp(2rem,4vw,2.8rem)}.rt-head h1 em{color:var(--blue);font-style:italic}
+.rt-head p{color:var(--muted);margin:14px 0 0;font-size:1.05rem}
+.rt-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 22px}
+.rt-card{border:2px solid var(--line);border-radius:16px;padding:16px 18px;cursor:pointer;background:#fff;transition:.15s;position:relative}
+.rt-card:hover{border-color:var(--blue-100)}
+.rt-card[aria-selected=true]{border-color:var(--blue);background:var(--blue-50)}
+.rt-card .t{font-family:Sora;font-weight:600;font-size:.9rem;color:var(--ink)}
+.rt-card .v{font-family:Sora;font-weight:800;font-size:1.9rem;color:var(--navy);line-height:1;margin-top:8px}
+.rt-card .chg{font-size:.78rem;font-weight:600;margin-top:6px;display:inline-flex;align-items:center;gap:4px}
+.rt-card .chg.up{color:var(--red)} .rt-card .chg.down{color:var(--green)}
+.rt-card .est{position:absolute;top:12px;right:12px;font-size:.6rem;font-family:Sora;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--blue-50);border:1px solid var(--line);border-radius:20px;padding:2px 7px}
+.rt-main{display:grid;grid-template-columns:230px 1fr;gap:26px;align-items:start}
+.rt-ctl h4{font-family:Sora;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.rt-range{display:flex;gap:4px;background:var(--blue-50);border:1px solid var(--line);border-radius:11px;padding:4px;margin-bottom:18px}
+.rt-range button{flex:1;font-family:Sora;font-weight:600;font-size:.8rem;border:0;background:none;padding:8px 4px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.rt-range button[aria-pressed=true]{background:#fff;color:var(--navy);box-shadow:var(--shadow-sm)}
+.rt-link{font-family:Sora;font-weight:600;font-size:.85rem;color:var(--blue);display:inline-block;margin-bottom:18px}
+.rt-chart{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px 16px 8px;box-shadow:var(--shadow-sm)}
+.rt-chart svg{width:100%;height:auto;display:block}
+.rt-legend{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:8px;font-size:.86rem}
+.rt-legend span{display:inline-flex;align-items:center;gap:8px;font-weight:500;color:var(--ink)}
+.rt-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.rt-legend b{font-family:Sora}
+.rt-note{font-size:.76rem;color:var(--muted);margin-top:10px}
+@media(max-width:820px){.rt-cards{grid-template-columns:1fr 1fr}.rt-main{grid-template-columns:1fr}}
+</style></head><body>
+<div id="site-hdr"></div>
+<div class="wrap" style="padding:40px 0 0">
+  <div class="rt-head">
+    <p class="eyebrow">Rate trends</p>
+    <h1>National average mortgage rates <em>over time</em>.</h1>
+    <p>Where 30- and 15-year fixed rates have moved, from Freddie Mac's weekly survey. A benchmark for context — your actual rate depends on your scenario.</p>
+  </div>
+  <div class="rt-cards" id="cards">
+    <div class="rt-card" data-type="30" aria-selected="true"><div class="t">30-year fixed</div><div class="v" id="v30">—</div><div class="chg" id="c30"></div></div>
+    <div class="rt-card" data-type="15" aria-selected="false"><div class="t">15-year fixed</div><div class="v" id="v15">—</div><div class="chg" id="c15"></div></div>
+    <div class="rt-card" data-type="fha" aria-selected="false"><span class="est">est</span><div class="t">30-year FHA</div><div class="v" id="vfha">—</div><div class="chg" id="cfha"></div></div>
+    <div class="rt-card" data-type="va" aria-selected="false"><span class="est">est</span><div class="t">30-year VA</div><div class="v" id="vva">—</div><div class="chg" id="cva"></div></div>
+  </div>
+  <div class="rt-main">
+    <div class="rt-ctl">
+      <h4>Historical timeline</h4>
+      <div class="rt-range" id="range">
+        <button data-r="60d" aria-pressed="true">60D</button><button data-r="6m" aria-pressed="false">6M</button>
+        <button data-r="1y" aria-pressed="false">1Y</button><button data-r="5y" aria-pressed="false">5Y</button><button data-r="all" aria-pressed="false">All</button>
+      </div>
+      <a class="rt-link" href="florida-rate-tool.html">How these rates work →</a>
+      <a class="btn btn-blue" href="florida-rate-tool.html" style="width:100%">See my scenario ↓</a>
+    </div>
+    <div>
+      <div class="rt-chart"><div id="chart"></div>
+        <div class="rt-legend">
+          <span><i style="background:#0E8257"></i> 30-yr fixed <b id="lg30">—</b></span>
+          <span><i style="background:#1657A8"></i> 15-yr fixed <b id="lg15">—</b></span>
+        </div>
+      </div>
+      <p class="rt-note" id="note">Source: Freddie Mac Primary Mortgage Market Survey via FRED · weekly national averages · conventional conforming, not a rate quote.</p>
+    </div>
+  </div>
+</div>
+<section class="section"><div class="wrap prose">
+  <h2>What this chart is — and isn't</h2>
+  <p>The 30- and 15-year lines are the real Freddie Mac weekly national averages: conventional, conforming loans for strong-credit borrowers putting 20% down. They're a benchmark for the direction of the market, not a quote. The FHA and VA tiles are <strong>estimates</strong> positioned relative to the conventional average — Freddie Mac's free feed doesn't publish FHA, VA, or jumbo averages, so those would need a dedicated rate-data provider to show as live figures. For your actual rate on any program, the scenario tool and a quick call are the real answer.</p>
+</div></section>
+<section class="section tint" id="more-calcs"></section>
+<div id="site-ftr"></div>
+<script src="calc-core.js"></script>
+<script>
+var GREEN='#0E8257',BLUE='#1657A8',state={range:'60d',type:'30'};
+function startForRange(r){var d=new Date();var days={'60d':60,'6m':183,'1y':365,'5y':1825}[r];if(!days)return null;d.setDate(d.getDate()-days);return d.toISOString().slice(0,10);}
+function sample(range){
+  var weeks={'60d':9,'6m':26,'1y':52,'5y':260,'all':340}[range]||9,wk=7*864e5,now=Date.now(),thirty=[],fifteen=[],b30=6.52,b15=5.84;
+  for(var i=weeks-1;i>=0;i--){var d=new Date(now-i*wk).toISOString().slice(0,10);
+    var drift=range==='5y'||range==='all'?i*0.006:i*0.012;
+    thirty.push({d:d,v:+(b30+Math.sin(i*0.4)*0.16+drift*0.5).toFixed(3)});
+    fifteen.push({d:d,v:+(b15+Math.sin(i*0.4+0.6)*0.15+drift*0.45).toFixed(3)});}
+  return {thirty:thirty,fifteen:fifteen,sample:true};
+}
+async function getHistory(range){
+  try{var r=await fetch('/api/rate-history?range='+range,{headers:{accept:'application/json'}});if(!r.ok)throw 0;var j=await r.json();
+    if(!j.thirty||!j.thirty.length)throw 0;return j;}catch(e){return sample(range);}
+}
+function chg(arr){if(arr.length<2)return 0;return arr[arr.length-1].v-arr[arr.length-2].v;}
+function setChg(elId,delta){var el=document.getElementById(elId);var up=delta>=0;
+  el.className='chg '+(up?'up':'down');el.innerHTML=(up?'▲':'▼')+' '+Math.abs(delta).toFixed(2)+'%';}
+function drawChart(data){
+  var lines=[{c:GREEN,pts:data.thirty},{c:BLUE,pts:data.fifteen}];
+  var W=760,H=340,padL=46,padR=14,padT=16,padB=30,vals=[],ts=[];
+  lines.forEach(function(l){l.pts.forEach(function(p){vals.push(p.v);ts.push(Date.parse(p.d));});});
+  var vmin=Math.floor(Math.min.apply(0,vals)*4)/4,vmax=Math.ceil(Math.max.apply(0,vals)*4)/4;if(vmax-vmin<0.5)vmax=vmin+0.5;
+  var tmin=Math.min.apply(0,ts),tmax=Math.max.apply(0,ts);
+  function X(t){return padL+(tmax===tmin?0:(t-tmin)/(tmax-tmin))*(W-padL-padR);}
+  function Y(v){return padT+(1-(v-vmin)/(vmax-vmin))*(H-padT-padB);}
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+  for(var i=0;i<=4;i++){var v=vmin+(vmax-vmin)*i/4,y=Y(v);
+    s+='<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="#EEF2F8" stroke-width="1"/>';
+    s+='<text x="'+(padL-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="11" fill="#8294ab" font-family="Inter">'+v.toFixed(2)+'%</text>';}
+  for(var k=0;k<=4;k++){var t=tmin+(tmax-tmin)*k/4,x=X(t),dt=new Date(t);
+    var lab=dt.toLocaleDateString('en-US',{month:'short',year:(tmax-tmin>500*864e5?'2-digit':undefined)});
+    s+='<text x="'+x+'" y="'+(H-10)+'" text-anchor="middle" font-size="11" fill="#8294ab" font-family="Inter">'+lab+'</text>';}
+  lines.forEach(function(l){var d=l.pts.map(function(p,i){return (i?'L':'M')+X(Date.parse(p.d)).toFixed(1)+' '+Y(p.v).toFixed(1);}).join(' ');
+    s+='<path d="'+d+'" fill="none" stroke="'+l.c+'" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>';
+    var last=l.pts[l.pts.length-1];s+='<circle cx="'+X(Date.parse(last.d)).toFixed(1)+'" cy="'+Y(last.v).toFixed(1)+'" r="3.5" fill="'+l.c+'"/>';});
+  s+='</svg>';document.getElementById('chart').innerHTML=s;
+}
+function render(data){
+  var t30=data.thirty[data.thirty.length-1].v,t15=data.fifteen[data.fifteen.length-1].v;
+  var fha=t30-0.10,va=t30+0.04,d30=chg(data.thirty),d15=chg(data.fifteen);
+  document.getElementById('v30').textContent=t30.toFixed(2)+'%';document.getElementById('v15').textContent=t15.toFixed(2)+'%';
+  document.getElementById('vfha').textContent=fha.toFixed(2)+'%';document.getElementById('vva').textContent=va.toFixed(2)+'%';
+  setChg('c30',d30);setChg('c15',d15);setChg('cfha',d30);setChg('cva',d30);
+  document.getElementById('lg30').textContent=t30.toFixed(2)+'%';document.getElementById('lg15').textContent=t15.toFixed(2)+'%';
+  drawChart(data);
+  var note=document.getElementById('note');
+  if(data.sample){note.innerHTML='<strong>Sample history</strong> — live Freddie Mac data loads from FRED once the site is deployed. Source: PMMS via FRED · weekly national averages · not a rate quote.';}
+  else{var last=data.thirty[data.thirty.length-1].d;note.textContent='As of '+new Date(last+'T00:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Source: Freddie Mac PMMS via FRED · weekly national averages · conventional conforming, not a rate quote.';}
+}
+async function load(){var data=await getHistory(state.range);window._d=data;render(data);}
+document.getElementById('range').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  [].forEach.call(this.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b);});state.range=b.dataset.r;load();});
+document.getElementById('cards').addEventListener('click',function(e){var c=e.target.closest('.rt-card');if(!c)return;
+  [].forEach.call(this.querySelectorAll('.rt-card'),function(x){x.setAttribute('aria-selected',x===c);});state.type=c.dataset.type;});
+buildChrome('mortgage-rates');load();
+</script>
+</body></html>

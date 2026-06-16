@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mortgage Broker Miami Florida | Matthew Gromadzki, NMLS #2560919</title>
+<meta name="description" content="Local Miami mortgage broker Matthew Gromadzki helps Miami-Dade buyers and homeowners compare FHA, conventional, jumbo, condo, and investor loans. Get pre-approved with a broker who answers the phone.">
+<meta name="theme-color" content="#0B2C52">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --navy:#0B2C52; --navy-700:#103A6B; --blue:#1657A8; --blue-600:#1D6FD0; --blue-300:#7FB0E8;
+  --blue-100:#E9F1FB; --blue-50:#F4F8FD;
+  --gold:#EFA31B; --gold-700:#C9850C; --gold-soft:#FCEBC8;
+  --ink:#0F2440; --muted:#5C6B82; --line:#E1E9F3; --paper:#FBFCFE; --white:#fff;
+  --shadow:0 18px 44px rgba(11,44,82,.12); --shadow-sm:0 6px 18px rgba(11,44,82,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;font-family:Sora,system-ui,sans-serif;line-height:1.12;letter-spacing:-.02em;font-weight:700;color:var(--navy)}
+.wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+.eyebrow{font-family:Sora;font-weight:700;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:20px;height:3px;background:var(--gold);border-radius:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:Sora;font-weight:600;font-size:.94rem;padding:13px 24px;border-radius:10px;border:1.5px solid transparent;cursor:pointer;transition:.16s}
+.btn-gold{background:var(--gold);color:#3a2900}.btn-gold:hover{background:var(--gold-700);color:#fff;transform:translateY(-1px)}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--navy-700);transform:translateY(-1px)}
+.btn-ghost{border-color:#fff;color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-line{border-color:var(--blue);color:var(--blue)}.btn-line:hover{background:var(--blue-50)}
+.btn-light{background:#fff;color:var(--navy);border-color:var(--line)}.btn-light:hover{border-color:var(--blue)}
+:focus-visible{outline:none;box-shadow:0 0 0 3px var(--gold-soft),0 0 0 5px var(--gold)}
+
+.topbar{background:var(--navy);color:#dce8f6;font-size:.82rem}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;min-height:40px;gap:16px}
+.topbar .stars{color:var(--gold);letter-spacing:1px}
+.topbar a{color:#fff;font-weight:600}
+.topbar .tb-left{display:flex;gap:18px;align-items:center}
+@media(max-width:760px){.topbar .tb-left span:last-child{display:none}}
+
+header{position:sticky;top:0;z-index:70;background:rgba(251,252,254,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;min-height:74px;gap:18px}
+.brand{display:flex;align-items:center;gap:11px}
+.logo-mark{width:42px;height:42px;border-radius:11px;background:linear-gradient(150deg,var(--blue),var(--blue-600));display:grid;place-items:center;flex:none;box-shadow:var(--shadow-sm)}
+.logo-mark svg{width:23px;height:23px}
+.brand b{font-family:Sora;font-weight:700;font-size:1.05rem;color:var(--navy);display:block;line-height:1.05}
+.brand small{color:var(--muted);font-size:.71rem;font-weight:500}
+.nav{display:flex;gap:6px;align-items:center}
+.nav>a,.dd>button{font-family:Sora;font-weight:600;font-size:.92rem;color:var(--ink);padding:9px 13px;border-radius:8px;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.nav>a:hover,.dd>button:hover{background:var(--blue-50);color:var(--blue)}
+.dd{position:relative}
+.dd>button svg{width:13px;height:13px;transition:.2s}
+.dd:hover>button svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 6px);left:0;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:8px;min-width:230px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s}
+.dd:hover .dd-menu{opacity:1;visibility:visible;transform:none}
+.dd-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--ink)}
+.dd-menu a:hover{background:var(--blue-50);color:var(--blue)}
+.hd-cta{display:flex;align-items:center;gap:12px}
+.hd-cta .ph{font-family:Sora;font-weight:700;color:var(--blue);white-space:nowrap}
+.menu-btn{display:none;width:46px;height:46px;border-radius:10px;border:1px solid var(--line);background:#fff;flex-direction:column;gap:5px;align-items:center;justify-content:center;cursor:pointer}
+.menu-btn span{width:22px;height:2px;background:var(--navy);border-radius:2px;transition:.25s}
+.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:1000px){.nav,.hd-cta .ph,.hd-cta .btn-line{display:none}.menu-btn{display:flex}}
+
+.drawer{position:fixed;inset:0;z-index:90;visibility:hidden}
+.drawer.open{visibility:visible}
+.drawer-bg{position:absolute;inset:0;background:rgba(11,44,82,.5);opacity:0;transition:.25s}
+.drawer.open .drawer-bg{opacity:1}
+.drawer-panel{position:absolute;top:0;right:0;height:100%;width:min(340px,86vw);background:#fff;transform:translateX(100%);transition:.28s cubic-bezier(.4,0,.2,1);padding:20px;overflow-y:auto;box-shadow:-12px 0 40px rgba(11,44,82,.2)}
+.drawer.open .drawer-panel{transform:none}
+.drawer-panel .dh{font-family:Sora;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:16px 6px 4px}
+.drawer-panel a{display:block;padding:11px 8px;border-bottom:1px solid var(--line);font-weight:600;color:var(--navy)}
+.drawer-panel .btn{margin-top:16px;width:100%}
+
+.hero{position:relative;background:linear-gradient(180deg,var(--blue-50),var(--paper));overflow:hidden}
+.hero::before{content:"";position:absolute;right:-160px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(29,111,208,.12),transparent 65%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;padding:62px 0 58px;position:relative}
+.hero h1{font-size:clamp(2.4rem,4.6vw,3.7rem);color:var(--navy)}
+.hero h1 .u{color:var(--blue);position:relative;white-space:nowrap}
+.hero h1 .u::after{content:"";position:absolute;left:0;bottom:4px;width:100%;height:8px;background:var(--gold-soft);z-index:-1;border-radius:4px}
+.hero p.sub{font-size:1.12rem;color:var(--muted);max-width:44ch;margin:20px 0 0}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-stats{display:flex;gap:26px;margin-top:32px;flex-wrap:wrap}
+.hero-stats div{display:flex;flex-direction:column}
+.hero-stats b{font-family:Sora;font-weight:800;font-size:1.6rem;color:var(--navy);line-height:1}
+.hero-stats span{font-size:.82rem;color:var(--muted);margin-top:4px}
+.hero-photo{position:relative}
+.photo-frame{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(160deg,var(--navy),var(--blue));box-shadow:var(--shadow);border:6px solid #fff}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#cfe0f4;text-align:center;padding:20px}
+.photo-ph svg{width:96px;height:96px;opacity:.6}
+.photo-ph span{font-size:.86rem;line-height:1.5}
+.photo-ph code{display:inline-block;margin-top:4px;background:rgba(255,255,255,.12);padding:3px 8px;border-radius:6px;font-size:.78rem;color:#fff}
+.cred-badge{position:absolute;left:-14px;bottom:24px;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:14px 18px 14px 30px;border:1px solid var(--line)}
+.cred-badge .cb-stars{color:var(--gold);font-size:.8rem;letter-spacing:1px}
+.cred-badge b{font-family:Sora;font-weight:700;color:var(--navy);display:block;font-size:1rem;margin-top:2px}
+.cred-badge span{font-size:.78rem;color:var(--muted)}
+.cred-badge::before{content:"";position:absolute;left:18px;top:14px;bottom:14px;width:4px;border-radius:3px;background:var(--gold)}
+
+.strip{background:var(--navy);color:#fff}
+.strip .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px;padding:18px 20px;text-align:center}
+.strip .item{display:flex;align-items:center;gap:9px;font-family:Sora;font-weight:600;font-size:.94rem}
+.strip .item svg{width:18px;height:18px;color:var(--gold);flex:none}
+
+.section{padding:74px 0}
+.section.tint{background:var(--blue-50)}
+.shead{max-width:660px;margin-bottom:40px}
+.shead.center{margin-inline:auto;text-align:center}
+.shead.center .eyebrow{justify-content:center}
+.shead h2{font-size:clamp(1.95rem,3.4vw,2.7rem);margin:13px 0 12px}
+.shead p{color:var(--muted);font-size:1.05rem;margin:0}
+
+.meet{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+.meet-photo{border-radius:22px;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(160deg,var(--blue),var(--navy));position:relative;box-shadow:var(--shadow);border:6px solid #fff}
+.meet-photo .photo-ph svg{width:80px;height:80px}
+.meet h2{font-size:clamp(1.9rem,3.2vw,2.5rem);margin-bottom:14px}
+.meet p{color:var(--muted);margin:0 0 14px}
+.meet .creds{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;padding:0}
+.meet .creds li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:.93rem;font-weight:500;color:var(--ink)}
+.meet .creds svg{width:20px;height:20px;color:var(--blue);flex:none;margin-top:2px}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;transition:.16s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--blue-100)}
+.card .ic{width:46px;height:46px;border-radius:12px;background:var(--blue-100);color:var(--blue);display:grid;place-items:center;margin-bottom:14px}
+.card .ic svg{width:23px;height:23px}
+.card h3{font-size:1.18rem;margin-bottom:7px}
+.card p{color:var(--muted);font-size:.93rem;margin:0 0 13px}
+.card a{font-family:Sora;font-weight:600;color:var(--blue);font-size:.88rem}
+.card a:hover{color:var(--gold-700)}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.step{position:relative;padding-top:8px}
+.step .n{font-family:Sora;font-weight:800;font-size:1.05rem;width:44px;height:44px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;margin-bottom:15px}
+.step h3{font-size:1.1rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.92rem;margin:0}
+
+.areas{display:flex;flex-wrap:wrap;gap:10px}
+.areas span{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 15px;font-family:Sora;font-weight:600;font-size:.9rem;color:var(--navy)}
+
+.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow-sm)}
+.tcard .st{color:var(--gold);letter-spacing:1px;margin-bottom:10px}
+.tcard p{margin:0 0 16px;font-size:.96rem;color:var(--ink)}
+.tcard .who{font-family:Sora;font-weight:600;font-size:.9rem;color:var(--navy)}
+.tcard .who span{display:block;color:var(--muted);font-weight:500;font-size:.82rem}
+
+.faq{max-width:820px;margin-inline:auto}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 22px;font-family:Sora;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.4rem;color:var(--blue);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq .ans{padding:0 22px 20px;color:var(--muted)}
+
+.cta-band{background:linear-gradient(140deg,var(--navy),var(--blue));border-radius:26px;color:#fff;padding:54px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta-band::after{content:"";position:absolute;right:-70px;bottom:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(239,163,27,.4),transparent 65%)}
+.cta-band h2{color:#fff;font-size:clamp(1.8rem,3vw,2.5rem);position:relative;z-index:2}
+.cta-band p{color:rgba(255,255,255,.8);margin:13px 0 0;position:relative;z-index:2}
+.cta-band .ca{display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
+.cta-band .ca .btn{justify-content:center;padding:15px}
+
+footer{background:var(--navy);color:#cdd9ea;padding:58px 0 30px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px}
+.fbrand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.fbrand b{font-family:Sora;color:#fff;font-size:1.05rem}
+.fdesc{font-size:.9rem;max-width:34ch;color:#aebfd6}
+.fphone{display:inline-block;margin-top:14px;font-family:Sora;font-weight:700;color:#fff;font-size:1.1rem}
+.fgrid h4{font-family:Sora;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#8da6c8;margin:0 0 14px}
+.fgrid a{display:block;color:#cdd9ea;padding:5px 0;font-size:.9rem}
+.fgrid a:hover{color:#fff}
+.flegal{margin-top:42px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:.78rem;color:#9fb2cd;line-height:1.7}
+.fbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:18px;font-size:.8rem;color:#9fb2cd}
+.eho{display:inline-flex;align-items:center;gap:7px}
+
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-photo{max-width:420px;margin-inline:auto;width:100%}
+  .meet{grid-template-columns:1fr;gap:30px}
+  .cards,.tcards{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .cta-band{grid-template-columns:1fr;padding:34px}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){.cards,.tcards,.steps,.fgrid{grid-template-columns:1fr}.meet .creds{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.rates-wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.rates-wrap h2{font-size:clamp(1.9rem,3.2vw,2.5rem);margin-bottom:14px}
+.rates-wrap>div>p{color:var(--muted);margin:0}
+.rate-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rate-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 22px;box-shadow:var(--shadow-sm);text-align:center}
+.rate-card .rl{font-family:Sora;font-weight:600;color:var(--muted);font-size:.9rem}
+.rate-card .rv{font-family:Sora;font-weight:800;color:var(--navy);font-size:2.7rem;display:block;line-height:1.1;margin:8px 0 2px}
+.rate-card .rs{color:var(--muted);font-size:.78rem}
+.rate-asof{grid-column:1/-1;text-align:center;color:var(--muted);font-size:.8rem;margin:6px 0 0}
+@media(max-width:1000px){.rates-wrap{grid-template-columns:1fr;gap:26px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left"><span class="stars">★★★★★</span> <span>Trusted by Miami-Dade homeowners</span> <span>· Serving all of Florida</span></div>
+    <a href="tel:+13059884806">📞 Call Matthew directly: (305) 988-4806</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap hd">
+    <a class="brand" href="#">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10.5V20h14v-9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><b>Mortgage Broker Miami</b><small>Matthew Gromadzki · NMLS #2560919</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#">Home</a>
+      <div class="dd">
+        <button>Loan Programs <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="dd-menu">
+          <a href="#programs">FHA Loans</a><a href="#programs">Conventional Loans</a><a href="#programs">Jumbo Loans</a>
+          <a href="#programs">Condo Loans</a><a href="#programs">Bank Statement (Self-Employed)</a><a href="#programs">DSCR / Investor Loans</a>
+          <a href="#programs">VA Loans</a><a href="#programs">Refinance</a><a href="#programs">Foreign National</a>
+        </div>
+      </div>
+      <div class="dd">
+        <button>Areas <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="dd-menu">
+          <a href="#areas">Brickell</a><a href="#areas">Coral Gables</a><a href="#areas">Miami Beach</a><a href="#areas">Doral</a>
+          <a href="#areas">Aventura</a><a href="#areas">Coconut Grove</a><a href="#areas">Kendall</a><a href="#areas">All Miami-Dade areas</a>
+        </div>
+      </div>
+      <a href="mortgage-calculators.html">Calculator</a>
+      <a href="#rates">Rates</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="ph" href="tel:+13059884806">(305) 988-4806</a>
+      <a class="btn btn-blue" href="#start">Get Pre-Approved</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <div class="drawer-bg" data-close></div>
+  <nav class="drawer-panel">
+    <a href="#" data-close>Home</a>
+    <div class="dh">Loan Programs</div>
+    <a href="#programs" data-close>FHA · Conventional · Jumbo</a>
+    <a href="#programs" data-close>Condo · Bank Statement · DSCR</a>
+    <a href="#programs" data-close>VA · Refinance · Foreign National</a>
+    <div class="dh">More</div>
+    <a href="#areas" data-close>Areas Served</a>
+    <a href="mortgage-calculators.html" data-close>Calculator</a>
+    <a href="#rates" data-close>Rates</a>
+    <a class="btn btn-blue" href="#start" data-close>Get Pre-Approved</a>
+    <a class="btn btn-light" href="tel:+13059884806">Call (305) 988-4806</a>
+  </nav>
+</div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Miami Mortgage Broker</p>
+      <h1>Home loans in Miami, handled <span class="u">personally</span>.</h1>
+      <p class="sub">I'm Matthew Gromadzki — a local Miami-Dade mortgage broker. I help buyers and homeowners compare FHA, conventional, jumbo, condo, and investor loans, with straight answers and a direct line, not a call center.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#start">Get pre-approved</a>
+        <a class="btn btn-line" href="mortgage-payment-calculator.html">Calculate my payment</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>10+</b><span>loan programs</span></div>
+        <div><b>NMLS</b><span>#2560919</span></div>
+        <div><b>Miami-Dade</b><span>&amp; all of Florida</span></div>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="matthew-headshot.jpg" alt="Matthew Gromadzki, Miami mortgage broker" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="photo-ph" style="display:flex">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4.2" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 20a7.5 7.5 0 0115 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span>Add your headshot<br>Save it as <code>matthew-headshot.jpg</code></span>
+        </div>
+      </div>
+      <div class="cred-badge">
+        <div class="cb-stars">★★★★★</div>
+        <b>Matthew Gromadzki</b>
+        <span>Licensed Mortgage Broker · NMLS #2560919</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Local Miami expert</div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> A direct line to Matthew</div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> 10+ loan programs shopped</div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Fast pre-approval</div>
+  </div>
+</div>
+
+<section class="section tint" id="programs">
+  <div class="wrap">
+    <div class="shead center">
+      <p class="eyebrow">Loan programs</p>
+      <h2>Financing for every kind of Miami buyer</h2>
+      <p>Different homes and borrowers need different loans. Start where you fit — or call and we'll figure it out together.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>FHA Loans</h3><p>Low down payments and flexible credit — great for first-time Miami buyers.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2"/></svg></div><h3>Conventional</h3><p>Competitive financing for strong-credit buyers with as little as 3–5% down.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><h3>Jumbo &amp; Luxury</h3><p>High-balance financing for luxury homes and condos across South Florida.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Condo Loans</h3><p>Warrantable, non-warrantable, and pre-construction Miami condo financing.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16v12H4zM4 11h16M8 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Bank Statement</h3><p>For self-employed and 1099 borrowers who don't fit standard income docs.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l5-5 4 3 8-8M16 7h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>DSCR / Investor</h3><p>Qualify rental properties on cash flow — perfect for Miami investors.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><h3>VA Loans</h3><p>$0-down home loans for eligible veterans and active-duty service members.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 11-3-6.7M21 4v4h-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Refinance</h3><p>Lower your rate, tap equity, or remove mortgage insurance.</p><a href="#start">Learn more →</a></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3C9.5 5.6 9.5 18.4 12 21" stroke="currentColor" stroke-width="1.6"/></svg></div><h3>Foreign National</h3><p>Financing for international buyers purchasing property in Miami-Dade.</p><a href="#start">Learn more →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rates">
+  <div class="wrap rates-wrap">
+    <div>
+      <p class="eyebrow">Today's mortgage rates</p>
+      <h2>Current average mortgage rates</h2>
+      <p>National average rates from Freddie Mac's weekly survey, published by the Federal Reserve (FRED) and updated every Thursday. Your actual rate depends on your credit, loan type, and the property &mdash; the only way to know yours is a personalized quote.</p>
+      <p style="margin-top:20px"><a class="btn btn-blue" href="#start">Get my personalized rate</a> <a class="btn btn-line" href="florida-rate-tool.html">Compare 3 ways</a> <a class="btn btn-line" href="mortgage-rates.html">See rate trends</a></p>
+    </div>
+    <div class="rate-cards">
+      <div class="rate-card"><span class="rl">30-year fixed</span><b class="rv" id="rate30">&mdash;</b><span class="rs">National average</span></div>
+      <div class="rate-card"><span class="rl">15-year fixed</span><b class="rv" id="rate15">&mdash;</b><span class="rs">National average</span></div>
+      <p class="rate-asof" id="rateAsOf">Loading current rates&hellip;</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="shead center"><p class="eyebrow">How it works</p><h2>From first call to keys in hand</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Talk to Matthew</h3><p>Tell me your goals. I'll review your scenario and lay out your real options.</p></div>
+      <div class="step"><div class="n">2</div><h3>Get pre-approved</h3><p>Know your true budget and show sellers you're serious — often same day.</p></div>
+      <div class="step"><div class="n">3</div><h3>Find your home</h3><p>Shop with confidence anywhere in Miami-Dade, knowing your numbers.</p></div>
+      <div class="step"><div class="n">4</div><h3>Close &amp; move in</h3><p>I handle the appraisal, underwriting, and closing so there are no surprises.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="areas">
+  <div class="wrap">
+    <div class="shead"><p class="eyebrow">Areas served</p><h2>Your neighborhood mortgage broker</h2><p>Helping buyers and homeowners across Miami-Dade and all of Florida.</p></div>
+    <div class="areas">
+      <span>Brickell</span><span>Coral Gables</span><span>Miami Beach</span><span>Doral</span><span>Aventura</span><span>Coconut Grove</span><span>Kendall</span><span>Pinecrest</span><span>Sunny Isles Beach</span><span>Edgewater</span><span>Key Biscayne</span><span>Homestead</span><span>Hialeah</span><span>North Miami</span><span>Palmetto Bay</span><span>Cutler Bay</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="shead center"><p class="eyebrow">Client experience</p><h2>What Miami clients say</h2></div>
+    <!-- PLACEHOLDER reviews — replace with real client testimonials before publishing -->
+    <div class="tcards">
+      <div class="tcard"><div class="st">★★★★★</div><p>"Matthew made our first condo purchase in Brickell painless. He actually picked up the phone every time and explained everything in plain English."</p><div class="who">Sample Client<span>Brickell · First-time buyer</span></div></div>
+      <div class="tcard"><div class="st">★★★★★</div><p>"As a self-employed buyer I'd been turned down before. Matthew found a bank-statement loan that worked and closed us on time."</p><div class="who">Sample Client<span>Doral · Self-employed</span></div></div>
+      <div class="tcard"><div class="st">★★★★★</div><p>"We refinanced two rental properties with a DSCR loan. Clear numbers, no runaround, and a noticeably lower payment."</p><div class="who">Sample Client<span>Miami · Investor</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="faq">
+  <div class="wrap">
+    <div class="shead center"><p class="eyebrow">FAQ</p><h2>Common questions</h2></div>
+    <div class="faq">
+      <details open><summary>What does a mortgage broker actually do?</summary><div class="ans">A broker works with many lenders instead of just one bank, so we can shop your scenario across multiple options to find a better rate or program fit — then manage the process for you from application to closing.</div></details>
+      <details><summary>What credit score do I need?</summary><div class="ans">It depends on the program. FHA can work with lower scores, while conventional and jumbo prefer stronger credit. Even if a bank already said no, there's often a path — let's talk through yours.</div></details>
+      <details><summary>Can you help with Miami condos?</summary><div class="ans">Yes — condos are a specialty. I handle warrantable and non-warrantable buildings, pre-construction, and the building-review questions that trip up other lenders.</div></details>
+      <details><summary>I'm self-employed. Can I still qualify?</summary><div class="ans">Absolutely. Bank-statement and other alternative-income programs let business owners and 1099 earners qualify without traditional tax-return-only underwriting.</div></details>
+      <details><summary>How fast can I get pre-approved?</summary><div class="ans">Often the same day once I have your basic information. A pre-approval letter shows sellers you're serious and tells you your real budget.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="start">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Ready to talk to a real Miami mortgage broker?</h2>
+        <p>Get a free, no-pressure review of your scenario and a clear plan for your purchase, refinance, or investment property.</p>
+      </div>
+      <div class="ca">
+        <a class="btn btn-gold" href="#">Get pre-approved</a>
+        <a class="btn btn-ghost" href="tel:+13059884806">Call (305) 988-4806</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10.5V20h14v-9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Mortgage Broker Miami</b></div>
+        <p class="fdesc">Helping Miami-Dade buyers and homeowners find the right loan — personally, from first call to closing.</p>
+        <a class="fphone" href="tel:+13059884806">(305) 988-4806</a>
+      </div>
+      <div><h4>Loan Programs</h4><a href="#programs">FHA Loans</a><a href="#programs">Conventional</a><a href="#programs">Jumbo</a><a href="#programs">Condo Loans</a><a href="#programs">Bank Statement</a><a href="#programs">DSCR / Investor</a><a href="#programs">Refinance</a></div>
+      <div><h4>Areas</h4><a href="#areas">Brickell</a><a href="#areas">Coral Gables</a><a href="#areas">Miami Beach</a><a href="#areas">Doral</a><a href="#areas">Aventura</a><a href="#areas">All Miami-Dade</a></div>
+      <div><h4>Company</h4><a href="#rates">Current Rates</a><a href="mortgage-calculators.html">Calculator</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="#start">Get Pre-Approved</a><a href="tel:+13059884806">Contact</a></div>
+    </div>
+    <div class="flegal">
+      Matthew Gromadzki · NMLS #2560919. This is not a commitment to lend or an offer to extend credit. All loans are subject to credit approval, income and asset verification, property appraisal, and program guidelines. Rates, terms, and program availability are subject to change without notice and vary by borrower. We do business in accordance with the Federal Fair Housing Law and the Equal Credit Opportunity Act.
+      <div class="fbar">
+        <span class="eho"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5M5 10.5V20h14v-9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Equal Housing Opportunity</span>
+        <span>© 2026 Mortgage Broker Miami Florida</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const mb=document.getElementById('menuBtn'),dr=document.getElementById('drawer');
+function closeDrawer(){dr.classList.remove('open');mb.classList.remove('open');document.body.style.overflow=''}
+mb.addEventListener('click',()=>{const o=dr.classList.toggle('open');mb.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''});
+dr.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',closeDrawer));
+// live mortgage rates from FRED (via /api/rates Worker proxy)
+(async function(){
+  var r30=document.getElementById('rate30'),r15=document.getElementById('rate15'),asof=document.getElementById('rateAsOf');
+  function pct(v){return (Math.round(parseFloat(v)*100)/100).toFixed(2)+'%';}
+  try{
+    var res=await fetch('/api/rates',{headers:{accept:'application/json'}});
+    if(!res.ok) throw 0;
+    var d=await res.json();
+    if(d.thirty&&d.thirty.value) r30.textContent=pct(d.thirty.value);
+    if(d.fifteen&&d.fifteen.value) r15.textContent=pct(d.fifteen.value);
+    var dt=d.thirty&&d.thirty.date;
+    asof.textContent=(dt?('As of '+new Date(dt+'T00:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' \u00b7 '):'')+'Source: Freddie Mac via FRED. National averages, not a rate quote.';
+  }catch(e){
+    r30.textContent='6.80%'; r15.textContent='6.00%';
+    asof.textContent='Sample rates \u2014 live Freddie Mac data loads from FRED once the site is deployed.';
+  }
+})();
+</script>
+</body>
+</html>

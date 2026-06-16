@@ -1,27 +1,23 @@
-# Mortgage Broker Miami Florida — Astro site
+# Mortgage Broker Miami — website
 
-Astro project that builds the full static site. Header, footer, page shell, and
-scripts live in one place; every page is generated from them.
+Static site (homepage + rate tool + calculator suite) served by a Cloudflare Worker
+that also exposes /api/rates (live 30/15-yr averages from FRED).
 
 ## Structure
-- `src/layouts/BaseLayout.astro` — the shared `<head>`, header, footer, mobile bar, and scripts. Edit once, every page updates.
-- `src/components/Header.astro`, `Footer.astro` — the shared header and footer.
-- `src/pages/*.astro` — one file per page (its title, description, and content).
-- `public/` — files served as-is: `styles.css`, `app.js`, `robots.txt`, `sitemap.xml`.
+- `public/` — the site (index.html homepage, calculators, rate tool, calc.css, calc-core.js)
+- `worker.js` — serves `public/` and the `/api/rates` endpoint
+- `wrangler.jsonc` — Cloudflare config (main = worker.js, assets = ./public)
 
-## Develop locally
-```bash
-npm install
-npm run dev      # preview at http://localhost:4321
-npm run build    # outputs the static site to dist/
-```
+## Deploy (Cloudflare)
+1. Free FRED key: https://fredaccount.stlouisfed.org/apikeys
+2. `npx wrangler secret put FRED_API_KEY`  (or add the secret in the dashboard)
+3. Push to your GitHub repo connected to Cloudflare, or run `npx wrangler deploy`.
+   Deploy command: `npx wrangler deploy`  (no build step needed).
 
-## Hosting (Cloudflare, auto-publish)
-- Build command: `npm run build`
-- `wrangler.jsonc` serves the built `dist/` folder.
-- Every push to `main` rebuilds and redeploys automatically.
+## Add your photo
+Drop a headshot named `matthew-headshot.jpg` into `public/` — it appears in the
+homepage hero automatically (a placeholder shows until then).
 
 ## Notes
-- Pages build as flat `*.html` files (e.g. `about.astro` -> `/about.html`), so existing links keep working.
-- The lead form / start funnel still needs a real endpoint (Cloudflare Worker, Formspree/Basin, or your CRM webhook) to capture submissions.
-- SEO `noindex` was removed so the live site can be indexed. To keep a page private, pass `noindex` to `BaseLayout`.
+- Calculators show planning estimates; only the rate tool / homepage rates pull live FRED data.
+- Replace the placeholder testimonials on the homepage with real client reviews before publishing.

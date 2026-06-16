@@ -1,7 +1,6 @@
 {
   "name": "mortgage-broker-miami-florida",
   "compatibility_date": "2026-06-16",
-  "assets": {
-    "directory": "./dist"
-  }
+  "main": "worker.js",
+  "assets": { "directory": "./public", "binding": "ASSETS" }
 }
