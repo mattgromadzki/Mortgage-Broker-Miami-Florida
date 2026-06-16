@@ -201,63 +201,7 @@ footer{background:var(--navy);color:#cdd9ea;padding:58px 0 30px}
 </head>
 <body>
 
-<div class="topbar">
-  <div class="wrap">
-    <div class="tb-left"><span class="stars">★★★★★</span> <span>Trusted by Miami-Dade homeowners</span> <span>· Serving all of Florida</span></div>
-    <a href="tel:+13059884806">📞 Call Matthew directly: (305) 988-4806</a>
-  </div>
-</div>
-
-<header>
-  <div class="wrap hd">
-    <a class="brand" href="#">
-      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10.5V20h14v-9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <span><b>Mortgage Broker Miami</b><small>Matthew Gromadzki · NMLS #2560919</small></span>
-    </a>
-    <nav class="nav">
-      <a href="#">Home</a>
-      <div class="dd">
-        <button>Loan Programs <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-        <div class="dd-menu">
-          <a href="#programs">FHA Loans</a><a href="#programs">Conventional Loans</a><a href="#programs">Jumbo Loans</a>
-          <a href="#programs">Condo Loans</a><a href="#programs">Bank Statement (Self-Employed)</a><a href="#programs">DSCR / Investor Loans</a>
-          <a href="#programs">VA Loans</a><a href="#programs">Refinance</a><a href="#programs">Foreign National</a>
-        </div>
-      </div>
-      <div class="dd">
-        <button>Areas <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-        <div class="dd-menu">
-          <a href="#areas">Brickell</a><a href="#areas">Coral Gables</a><a href="#areas">Miami Beach</a><a href="#areas">Doral</a>
-          <a href="#areas">Aventura</a><a href="#areas">Coconut Grove</a><a href="#areas">Kendall</a><a href="#areas">All Miami-Dade areas</a>
-        </div>
-      </div>
-      <a href="mortgage-calculators.html">Calculator</a>
-      <a href="#rates">Rates</a>
-    </nav>
-    <div class="hd-cta">
-      <a class="ph" href="tel:+13059884806">(305) 988-4806</a>
-      <a class="btn btn-blue" href="#start">Get Pre-Approved</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</header>
-
-<div class="drawer" id="drawer">
-  <div class="drawer-bg" data-close></div>
-  <nav class="drawer-panel">
-    <a href="#" data-close>Home</a>
-    <div class="dh">Loan Programs</div>
-    <a href="#programs" data-close>FHA · Conventional · Jumbo</a>
-    <a href="#programs" data-close>Condo · Bank Statement · DSCR</a>
-    <a href="#programs" data-close>VA · Refinance · Foreign National</a>
-    <div class="dh">More</div>
-    <a href="#areas" data-close>Areas Served</a>
-    <a href="mortgage-calculators.html" data-close>Calculator</a>
-    <a href="#rates" data-close>Rates</a>
-    <a class="btn btn-blue" href="#start" data-close>Get Pre-Approved</a>
-    <a class="btn btn-light" href="tel:+13059884806">Call (305) 988-4806</a>
-  </nav>
-</div>
+<div id="site-hdr"></div>
 
 <section class="hero">
   <div class="wrap hero-grid">
@@ -422,11 +366,9 @@ footer{background:var(--navy);color:#cdd9ea;padding:58px 0 30px}
   </div>
 </footer>
 
+<script src="calc-core.js"></script>
 <script>
-const mb=document.getElementById('menuBtn'),dr=document.getElementById('drawer');
-function closeDrawer(){dr.classList.remove('open');mb.classList.remove('open');document.body.style.overflow=''}
-mb.addEventListener('click',()=>{const o=dr.classList.toggle('open');mb.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''});
-dr.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',closeDrawer));
+buildChrome('home');
 // live mortgage rates from FRED (via /api/rates Worker proxy)
 (async function(){
   var r30=document.getElementById('rate30'),r15=document.getElementById('rate15'),asof=document.getElementById('rateAsOf');

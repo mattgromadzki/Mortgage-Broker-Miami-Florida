@@ -131,15 +131,7 @@ footer .fbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;m
 </head>
 <body>
 
-<div class="topbar"><div class="wrap">
-  <span><span class="stars">★★★★★</span> Florida wholesale-style pricing <span class="upd">· Base rate updated <span id="updDate">today</span></span></span>
-  <a href="tel:+13059884806">📞 (305) 988-4806</a>
-</div></div>
-
-<header><div class="wrap hd">
-  <a class="brand" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5M5 10.5V20h14v-9.5M10 20v-5h4v5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Mortgage Broker Miami</b><small>Matthew Gromadzki · NMLS #2560919</small></span></a>
-  <div class="hd-cta"><a class="ph" href="mortgage-calculators.html">Calculators</a><a class="ph" href="tel:+13059884806">(305) 988-4806</a><a class="btn btn-blue" href="#verify">Verify my scenario</a></div>
-</div></header>
+<div id="site-hdr"></div>
 
 <div class="wrap tool-hero">
   <p class="eyebrow">Florida purchase &amp; refinance scenarios</p>
@@ -266,7 +258,9 @@ footer .fbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;m
   <div class="fbar"><span class="eho"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 11.5 12 4l9 7.5M5 10.5V20h14v-9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Equal Housing Opportunity</span><span>Planning estimate only · Not a rate lock</span></div>
 </div></footer>
 
+<script src="calc-core.js"></script>
 <script>
+buildChrome('florida-rate-tool');
 /* ============================================================
    PRICING FRAMEWORK — illustrative & editable.
    Calibrate these to your real wholesale rate sheet.
@@ -413,7 +407,7 @@ function recalc(){
 
 /* anchor base rate to FRED 30-yr if the /api/rates worker is live */
 (function(){
-  $('updDate').textContent=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  var _u=$('updDate'); if(_u)_u.textContent=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   fetch('/api/rates',{headers:{accept:'application/json'}}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
     if(d.thirty&&d.thirty.value){CFG.base30=parseFloat(d.thirty.value);}
     recalc();
